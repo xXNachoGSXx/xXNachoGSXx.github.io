@@ -42,7 +42,7 @@
   ======================================================= -->
 </head>
 
-<body body scroll="no" style="overflow: hidden">
+<body >
 
   <!--==========================
   Header
@@ -81,13 +81,17 @@
       <div class="container wow fadeIn">
         <div class="row1">
         	<div class="column1">
-        		<label for="" class="col-sm-2 form-control-label" id="selectornombres"  >Seleccione alumno</label>
+        		<label for="" class="col-sm-2 form-control-label" id="selectornombres"  >Cédula</label>
                   <div class="col-sm-10">
-                    	<select class="form-control selectpicker" id="select-country" data-live-search="true">
-                  		<option data-tokens="Tejido">Carlos Gómez</option>
-	              		<option data-tokens="Cocina Tradcional">Gabriel Solórzano</option>
-	              		<option data-tokens="Manejo de alimentos">Adriana Álvarez</option>
-                  		</select>
+                    <input type="number" name="quantity" min="1">  
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                     <br><br>                    	
+                  </div>
+            <label for="" class="col-sm-2 form-control-label" id="selectornombres"  >Nombre</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="quantity" readonly>
+
+                      
                   </div>
         	</div>
 
@@ -107,7 +111,7 @@
 
     	 <center>
         		<br><br> <button class="btn default">Matricular</button>
-            <br><br>  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Añadir estudiante</button>
+            <br><br>  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Crear estudiante</button>
          </center>
         </div>
     </section><!-- #portfolio -->
@@ -125,16 +129,16 @@
                 <div class="col-md-12 col-sm-12 no-padng">    
                              <form method="post" id="userRegisterFrm" class="log-frm" name="userRegisterFrm">  
                             <ul>
+                             <label>Cédula</label>
+                           <input type="number" placeholder="Identificación" name="fName" class="form-control" required>
                              <label>Nombre</label>
                            <input type="text" placeholder="Nombre" name="fName" class="form-control" required>
                              <label>Apellidos</label>
                             <input type="text" placeholder="Apellidos" name="lName" class="form-control" required>
-                            <label>Usuario</label>
-                           <input type="text" placeholder="Usuario" name="emailId" class="form-control" required>
-                            <label>Contraseña</label>
-                            <input type="password" placeholder="Contraseña" name="password" class="form-control" required>
-                            <label>Confirmar Contraseña</label>
-                           <input type="password" placeholder="Confirmar Contraseña" name="repassword" class="form-control" required>
+                            <label>Télefono</label>
+                           <input type="number" placeholder="Teléfono" name="emailId" class="form-control" required>
+                            <label>Correo</label>
+                            <input type="password" placeholder="Correo" name="password" class="form-control" required>
                            <br> 
                           <button name="userRegBtn" class="btn btn-primary">Registrar</button>
                              <div style="display:none;" class="sign greenglow">
@@ -177,23 +181,38 @@
             </p>
         
 
-        <div id="dias">
-		<table  id="diasc" class="test" >
-			<tr id="fila0"><th> <center> Curso   </center></th><th>  <center>Estudiante  </center></th><th> <center>Selección </center></th></tr>
-			<tr id="fila1"><td>Tejido</td><td>Gabriel Solórzano</td><td> <center><input type="checkbox"> </center>  </td></tr>
-			<tr id="fila2"><td>Tejido</td><td>Gabriel Solórzano</td><td>  <center><input type="checkbox"> </center> </td></tr>
-			<tr id="fila3"><td>Tejido</td><td>Gabriel Solórzano</td><td> <center><input type="checkbox"> </center> </td></tr>
-			<tr id="fila4"><td>Manipulación de alimentos </td><td>Carlos Gómez</td><td>  <center><input type="checkbox"> </center></td></tr>
-			<tr id="fila5"><td>Manipulación de alimentos</td><td>Carlos Gómez</td><td> <center><input type="checkbox"> </center> </td></tr>
-		</table>
-		</center>
+        <div class="container">
+  
+    <table class="table table-striped custab">
+    <thead>
+        <tr>
+            <th>Curso</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th class="text-center">Acción</th>
+          </tr>
+      </thead>
+              <tr>
+                  <td>Tejido</td>
+                <td>Carlos</td>
+                <td>Gómez</td>
+                <td class="text-center"> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Desmatricular</a></td>
+            </tr>
+            <tr>
+                <td>Introducción a la guitarra</td>
+                <td>Gabriel</td>
+                <td>Solózano</td>
+                <td class="text-center"> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Desmatricular</a></td>
+            </tr>
+            <tr>
+                <td>Manejo de alimentos</td>
+                <td>Adriana</td>
+                <td>Álvarez</td>
+                <td class="text-center"><a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Desmatricular</a></td>
+            </tr>
+    </table>
 
-
-		 <center>
-        		<br><br> <button class="btn alerta">Desmatricular</button>
-         </center>
-		
-	</div>
+</div>
 
 
 

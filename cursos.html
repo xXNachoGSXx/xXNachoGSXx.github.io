@@ -87,6 +87,9 @@
 	           <div class="form-group">
 	            <input type="number" class="form-control" name="username" placeholder="Cantidad de cupos" required="required">   
 	          </div>
+            <div class="form-group">
+              <input type="number" class="form-control" name="username" placeholder="Precio" required="required">   
+            </div>
 	          <div class="form-group">
 	            <input type="text" class="form-control" name="password" placeholder="Horario" required="required"> 
 	          </div>
@@ -107,38 +110,69 @@
       <div class="container wow fadeInUp">
         <div class="section-header">
           <h3 class="section-title">Visualizador de cursos</h3>
-          <p class="section-description">Consiste en la visuzlización de los cursos de una comunidad</p>
+          <p class="section-description">Consiste en la visualización de los cursos de una comunidad</p>
       </div>
-
-
-
-
         <label for="" class="col-sm-2 form-control-label"  >Seleccione curso</label>
                   <div class="col-sm-10">
                       <select class="form-control selectpicker" id="select-country" data-live-search="true">
-                      <option data-tokens="Tejido">Tejido</option>
-                    <option data-tokens="Cocina Tradcional">Cocina Tradcional</option>
-                    <option data-tokens="Manejo de alimentos">Manejo de alimentos</option>
+                          <option data-tokens="Tejido">Tejido</option>
+                          <option data-tokens="Cocina Tradcional">Cocina Tradcional</option>
+                          <option data-tokens="Manejo de alimentos">Manejo de alimentos</option>
                       </select>
                   </div>
     	     <center>
         		    <br><br> <button class="btn default">Visualizar</button>
             </center>
-        </div>
+      </div>
 
 
-         <div class="section-header">
+      <div class="section-header">
           <h3 class="section-title">Información de curso</h3>
+      </div>
+
+
+      <center>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-10">
+            </div>
+            <div class="col-sm">
+              <table id="tablePreview" class="table table-bordered">
+  <!--Table body-->
+                <tbody>
+                    <tr>
+                        <td><b>Nombre</b></td>
+                        <td>Tejido</td>
+                    </tr>
+                    <tr>
+                        <td><b>Descripción</b></td>
+                        <td>Se tratarán los temas principales con respecto al tejido con telar.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Profesor</b></td>
+                        <td>Andrea Montero</td>
+                    </tr>
+                    <tr>
+                        <td><b>Horario</b></td>
+                        <td>Jueves 6pm - 8 pm</td>
+                    </tr>
+                    <tr>
+                        <td><b>Precio</b></td>
+                        <td>15000</td>
+                    </tr>
+                    <tr>
+                        <td><b>Cupos</b></td>
+                        <td>20</td>
+                    </tr>
+                </tbody>
+    <!--Table body-->
+              </table> 
+            </div>
+          <div class="col-sm-10">
         </div>
-          <center>
-            <div class="wrappera">
-                    <div class="boxa headera">Horario</div>
-                    <div class="boxa sidebara">Cupos</div>
-                    <div class="boxa sidebar2a">Disponibilidad</div>
-                    <div class="boxa contenta">Descripción<br /> </div>
-                    <div class="boxa footera">Profesor</div>
-                </div>  
-          </center>
+      </div>
+    </div>
+    </center>
 
 
 
@@ -146,12 +180,44 @@
           <h3 class="section-title">Estudiantes inscritos</h3>
         </div>
 
-
-        
-
         <center>
-        <br><br> <button class="btn alerta">Desmatricular</button>
-        </center>
+
+        <div class="container">
+  
+    <table class="table table-striped custab">
+    <thead>
+        <tr>
+            <th>Cedula</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th class="text-center">Acción</th>
+          </tr>
+      </thead>
+              <tr>
+                  <td>402430534</td>
+                <td>Carlos</td>
+                <td>Gómez</td>
+                <td class="text-center"> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Desmatricular</a></td>
+            </tr>
+            <tr>
+                <td>116920331</td>
+                <td>Gabriel</td>
+                <td>Solózano</td>
+                <td class="text-center"> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Desmatricular</a></td>
+            </tr>
+            <tr>
+                <td>402220111</td>
+                <td>Adriana</td>
+                <td>Álvarez</td>
+                <td class="text-center"><a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Desmatricular</a></td>
+            </tr>
+    </table>
+
+</div>
+
+</center>
+
+     
     </section><!-- #portfolio -->
 
   <!--==========================
