@@ -79,19 +79,25 @@
 	      <div class="modal-body">
 	        <form action="/examples/actions/confirmation.php" method="post">
 	          <div class="form-group">
-	            <input type="text" class="form-control" name="username" placeholder="Nombre" required="required">   
+	            <input type="text" class="form-control" name="nombre" placeholder="Nombre" required="required">   
 	          </div>
 	          <div class="form-group">
-	            <input type="text" class="form-control" name="password" placeholder="Descripción" required="required"> 
-	          </div>        
+	            <input type="text" class="form-control" name="descripcion" placeholder="Descripción" required="required"> 
+	          </div>
+                <div class="form-group">
+	            <input type="text" class="form-control" name="profe" placeholder="Profesor" required="required"> 
+	          </div>
 	           <div class="form-group">
-	            <input type="number" class="form-control" name="username" placeholder="Cantidad de cupos" required="required">   
+	            <input type="number" class="form-control" name="cupos" placeholder="Cantidad de cupos" required="required">   
 	          </div>
             <div class="form-group">
-              <input type="number" class="form-control" name="username" placeholder="Precio" required="required">   
+              <input type="number" class="form-control" name="precio" placeholder="Precio" required="required">   
             </div>
 	          <div class="form-group">
-	            <input type="text" class="form-control" name="password" placeholder="Horario" required="required"> 
+	            <input type="text" class="form-control" name="horario" placeholder="Horario" required="required"> 
+	          </div>
+                <div class="form-group">
+	            <input type="text" class="form-control" name="duracion" placeholder="Duración" required="required"> 
 	          </div>
 	           <div class="form-group">
 	            <button type="submit" class="btn btn-primary btn-lg btn-block login-btn">Crear curso</button>
@@ -197,25 +203,43 @@
                   <td>402430534</td>
                 <td>Carlos</td>
                 <td>Gómez</td>
-                <td class="text-center"> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Desmatricular</a></td>
+                <td class="text-center"> <a href="#" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#desma"><span class="glyphicon glyphicon-remove"></span> Desmatricular</a></td>
             </tr>
             <tr>
                 <td>116920331</td>
                 <td>Gabriel</td>
                 <td>Solózano</td>
-                <td class="text-center"> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Desmatricular</a></td>
+                <td class="text-center"> <a href="#" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#desma"><span class="glyphicon glyphicon-remove"></span> Desmatricular</a></td>
             </tr>
             <tr>
                 <td>402220111</td>
                 <td>Adriana</td>
                 <td>Álvarez</td>
-                <td class="text-center"><a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Desmatricular</a></td>
+                <td class="text-center"><a href="#" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#desma"><span class="glyphicon glyphicon-remove"></span> Desmatricular</a></td>
             </tr>
     </table>
 
 </div>
 
 </center>
+        
+<div class="modal fade" id="desma" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">¡Atención!</h4>
+      </div>
+      <div class="modal-body">
+          <center>
+        <p>Esta seguro que desea desmatricular al estudiante?</p>
+          <button class="btn btn-success btn-md" class="close" data-dismiss="modal" aria-hidden="true">Si</button>
+          <button class="btn btn-danger btn-md" class="close" data-dismiss="modal" aria-hidden="true">No</button> 
+        </center>
+      </div>
+   
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
      
     </section><!-- #portfolio -->
@@ -244,52 +268,13 @@
   <!--==========================
     Footer
   ============================-->
-<footer id="footer">
-    <div class="footer-top">
-  <div class="container">
-  	<div class="row justify-content-between">
-            <div class="col-xl-4 col-sm-6 col-lg-4">
-                <div class="single-footer-widget footer_1">
-                    <h4>Acerca de nosotros</h4>
-                    <p> Estudiantes del Tecnológico de Costa Rica  </p>
-                    <p class="mt-3" >Actualmente cursando el curso de Computación y sociedad, donde se busca a través de este proyecto brindar una herramienta a la sociedad, que facilite algunas tareas comunitarias</p>
-                </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 col-lg-4">
-                <div class="single-footer-widget footer_2">
-                    <h4>Contacto</h4>
-                    <div class="contact_info">
-                        <span class="ti-home"></span>
-                        <h5>Santa Bárbara, Heredia</h5>
-                        <p>Gabriel Solórzano Chanto</p>
-                    </div>
-                    <div class="contact_info">
-                        <span class="ti-headphone-alt"></span>
-                        <h5>+506 8706 2905</h5>
-                    </div>
-                    <h4>Contacto</h4>
-                    <div class="contact_info">
-                        <span class="ti-home"></span>
-                        <h5>Santo Domingo, Heredia</h5>
-                        <p>Carlos Gómez Segura</p>
-                    </div>
-                    <div class="contact_info">
-                        <span class="ti-headphone-alt"></span>
-                        <h5>+506 8661 5654</h5>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-xl-4 col-sm-8 col-lg-4">
-                <div class="single-footer-widget footer_3">    
-                     <img src="img/logotec.png" alt="Avatar" class="image">   
-                </div>
-            </div>
-        </div>
-
-  </div>
-</div>
-</footer><!-- #footer -->
+  <footer>
+      <center>
+      <div class="footer-top">
+        <small>&copy; Copyright 2019, Gabriel Solórzano, Carlo Gómez</small>
+    </div>
+      </center>
+</footer>
 
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 

@@ -1074,3 +1074,7 @@ body.mobile-nav-active #mobile-nav-toggle {
     box-shadow: 3px 3px 0px transparent;
     transition: 0.5s;
     }
+.i{
+    width:250px;
+    height:250px
+}
