@@ -60,7 +60,7 @@ Header
 
             <nav id="nav-menu-container"  class="navbar navbar-dark bg-dark">
                 <ul class="nav-menu">
-                    <li class="menu-active"><a href="index.html">Atrás</a></li>
+                    <li class="menu-active"><a href="index.php">Atrás</a></li>
                 </ul>
             </nav><!-- #nav-menu-container -->
             </div>
@@ -68,7 +68,7 @@ Header
 
 
     <!--==========================
-Inicio de sesión 
+Inicio de sesión
 ============================-->
 
 
@@ -130,10 +130,10 @@ About Us Section
 
                 <div class="footer-top">
                     <div class="container">
-                        <div class="row justify-content-between">                
+                        <div class="row justify-content-between">
                             <div class="col-xl-4 col-sm-8 col-lg-4">
-                                <div class="single-footer-widget footer_3">    
-                                    <img src="img/logotec.png" alt="Avatar" class="image">   
+                                <div class="single-footer-widget footer_3">
+                                    <img src="img/logotec.png" alt="Avatar" class="image">
                                 </div>
                             </div>
                         </div>

@@ -61,8 +61,8 @@ Header
                 <ul class="nav-menu ">
                     <li class="menu-active"><a href="#portfolio">Menú Principal</a></li>
                     <li><a href="#about">Historial</a></li>
-                    <li><a href="cursos.html">Ver cursos</a></li>
-                    <li><a href="index.html">Cerrar sesión</a></li>
+                    <li><a href="cursos.php">Ver cursos</a></li>
+                    <li><a href="index.php">Cerrar sesión</a></li>
                 </ul>
             </nav><!-- #nav-menu-container -->
             </div>
@@ -83,9 +83,9 @@ Header
                             <div class="column1">
                                 <label for="" class="col-sm-2 form-control-label" id="cedula-estudiante"  >Cédula</label>
                                 <div class="col-sm-10">
-                                    <input type="number" name="quantity" min="1">  
+                                    <input type="number" name="quantity" min="1">
                                     <button type="submit"><i class="fa fa-search"></i></button>
-                                    <br><br>                    	
+                                    <br><br>
                                 </div>
                                 <label for="" class="col-sm-2 form-control-label" id="nombre-estudiante"  >Nombre</label>
                                 <div class="col-sm-10">
@@ -123,11 +123,11 @@ Header
                     <div class="modal-header">
                         <h4 class="modal-title">Registrar</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    </div>               
+                    </div>
 
-                    <div class="modal-body text-center">                                       
-                        <div class="col-md-12 col-sm-12 no-padng">    
-                            <form method="post" id="userRegisterFrm" class="log-frm" name="userRegisterFrm">  
+                    <div class="modal-body text-center">
+                        <div class="col-md-12 col-sm-12 no-padng">
+                            <form method="post" id="userRegisterFrm" class="log-frm" name="userRegisterFrm">
                                 <ul>
                                     <label>Cédula</label>
                                     <input type="number" placeholder="Cédula" name="cedula" class="form-control" required>
@@ -141,11 +141,11 @@ Header
                                     <input type="number" placeholder="Teléfono" name="telefono" class="form-control" required>
                                     <label>Correo</label>
                                     <input type="password" placeholder="Correo" name="correo" class="form-control" required>
-                                    <br> 
+                                    <br>
                                     <button name="userRegBtn" class="btn btn-primary">Registrar</button>
                                     <div style="display:none;" class="sign greenglow">
                                         <li>   <i class="icon-check"></i><br>
-                                            <font color="red"> 
+                                            <font color="red">
                                                 User registration successful.<br>
                                                 Your login Url already send to your email.
 
@@ -154,7 +154,7 @@ Header
                                     <div style="display:none;" id="regnSuc11" class="sign redglow">
                                         <i class="icon-mail"></i><br>
                                         <font color="red">    Email Exist.</font>
-                                    </div> 
+                                    </div>
                                 </ul>
                             </form>
                         </div>
@@ -226,7 +226,7 @@ About Us Section
                                 <center>
                                     <p>Esta seguro que desea desmatricular al estudiante?</p>
                                     <button class="btn btn-success btn-md" class="close" data-dismiss="modal" aria-hidden="true">Si</button>
-                                    <button class="btn btn-danger btn-md" class="close" data-dismiss="modal" aria-hidden="true">No</button> 
+                                    <button class="btn btn-danger btn-md" class="close" data-dismiss="modal" aria-hidden="true">No</button>
                                 </center>
                             </div>
 

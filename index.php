@@ -1,3 +1,9 @@
+<?php
+  // Include DB conexion file
+  include "Scripts/conexion.php";
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -62,7 +68,7 @@ Header
                 <ul class="nav-menu">
                     <li class="menu-active"><a href="#hero">Inicio</a></li>
                     <li><a href="#about">Cursos</a></li>
-                    <li><a href="about.html">Acerca de nosotros</a></li>
+                    <li><a href="about.php">Acerca de nosotros</a></li>
                     <li data-toggle="modal" data-target="#myModal"><a href="#">Iniciar Sesión</a></li>
                 </ul>
             </nav><!-- #nav-menu-container -->
@@ -71,25 +77,25 @@ Header
 
 
     <!--==========================
-Inicio de sesión 
+Inicio de sesión
 ============================-->
 
 
     <div id="myModal" class="modal fade">
         <div class="modal-dialog modal-login">
             <div class="modal-content">
-                <div class="modal-header">     
-                    <h4 class="modal-title">Inicio de Sesión</h4> 
+                <div class="modal-header">
+                    <h4 class="modal-title">Inicio de Sesión</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <form action="/examples/actions/confirmation.php" method="post">
+                    <form action="Scripts/validacion.php" method="POST">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuario" required="required">   
+                            <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuario" required="required">
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" id="clave" name="clave" placeholder="Contraseña" required="required"> 
-                        </div>        
+                            <input type="password" class="form-control" id="clave" name="clave" placeholder="Contraseña" required="required">
+                        </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary btn-lg btn-block login-btn">Login</button>
 
@@ -97,12 +103,12 @@ Inicio de sesión
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <li><a href="admin.html">Administrador</a></li>
-                    <li><a href="super.html">Usuario Alpha</a></li>
+                    <li><a href="admin.php">Administrador</a></li>
+                    <li><a href="super.php">Usuario Alpha</a></li>
                 </div>
             </div>
         </div>
-    </div>     
+    </div>
 
 
     <!--==========================
@@ -141,10 +147,17 @@ About Us Section
                                                 <div class="form-group row">
                                                     <label for="" class="col-sm-2 form-control-label">Comunidad</label>
                                                     <div class="col-sm-10">
+                                                      <?php
+                                                        $sql = "call getcomunidades()";
+                                                        $res = $conn->query($sql);
+                                                      ?>
                                                         <select class="form-control selectpicker" id="select-comunidad" data-live-search="true">
-                                                            <option data-tokens="Santo Domingo">Santo Domingo</option>
-                                                            <option data-tokens="San Bosco">San Bosco</option>
-                                                            <option data-tokens="Misioneros Josefinos">Misioneros Josefinos</option>
+                                                          <?php while( $row = $res->fetch_array() ) {
+                                                            if(!empty($row['nombre'])) {?>
+                                                            <option data-tokens="<?php echo $row['nombre']; ?>" value="<?php echo $row['idcomunidad']; ?>">
+                                                            <?php echo $row['nombre']; ?>
+                                                            </option>
+                                                            <?php } } ?>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -155,7 +168,7 @@ About Us Section
                             </div>
                         </div>
                     </div>
-                </div>    
+                </div>
             </div>
             <center>
                 <br><br><br>
@@ -255,7 +268,7 @@ Services Section
                                 </tr>
                             </tbody>
                             <!--Table body-->
-                        </table>       
+                        </table>
                     </div>
                 </div>
             </center>

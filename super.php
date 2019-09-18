@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <title> Sistema de Matrícula</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="" name="keywords">
@@ -55,11 +55,11 @@ Header
 
                 <li><a href="#about">Ver Centros</a></li>
                 <li><a href="#services">Crear Centro</a></li>
-                <li data-toggle="modal" data-target="#myModal"><a href="index.html">Salir</a></li>
+                <li data-toggle="modal" data-target="#myModal"><a href="index.php">Salir</a></li>
             </ul>
         </nav><!-- #nav-menu-container -->
         </div>
-    </header><!-- #header -->  
+    </header><!-- #header -->
 <!--==========================
 Hero Section
 ============================-->
@@ -157,7 +157,7 @@ Services Section
         </div>
 
         <center>
-            <form method="post" id="userRegisterFrm" class="log-frm" name="userRegisterFrm">  
+            <form method="post" id="userRegisterFrm" class="log-frm" name="userRegisterFrm">
                 <div class="form-group row">
                     <div class="col-xs-4"></div>
                     <div class="col-xs-4">
@@ -176,7 +176,7 @@ Services Section
                             <button name="userRegBtn" class="btn btn-primary">Registrar</button></li>
                         <div style="display:none;" class="sign greenglow">
                             <i class="icon-check"></i><br>
-                            <font color="red"> 
+                            <font color="red">
                                 User registration successful.<br>
                                 Your login Url already send to your email.
                             </font>
@@ -184,7 +184,7 @@ Services Section
                         <div style="display:none;" id="regnSuc11" class="sign redglow">
                             <i class="icon-mail"></i><br>
                             <font color="red">    Email Exist.</font>
-                        </div> 
+                        </div>
                         </ul>
                 </div>
                 <div class="col-xs-4"></div>
@@ -200,11 +200,11 @@ Services Section
                 <div class="modal-header">
                     <h4 class="modal-title">Registrar</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                </div>               
+                </div>
 
-                <div class="modal-body text-center">                                       
-                    <div class="col-md-12 col-sm-12 no-padng">    
-                        <form method="post" id="userRegisterFrm" class="log-frm" name="userRegisterFrm">  
+                <div class="modal-body text-center">
+                    <div class="col-md-12 col-sm-12 no-padng">
+                        <form method="post" id="userRegisterFrm" class="log-frm" name="userRegisterFrm">
                             <ul>
                                 <label>Cédula</label>
                                 <input type="number" placeholder="Identificación" name="cedula" class="form-control" required>
@@ -222,11 +222,11 @@ Services Section
                                 <input type="password" placeholder="Contraseña" name="password" class="form-control" required>
                                 <label>Confirmar Contraseña</label>
                                 <input type="password" placeholder="Confirmar Contraseña" name="repassword" class="form-control" required>
-                                <br> 
+                                <br>
                                 <button name="userRegBtn" class="btn btn-primary">Registrar</button>
                                 <div style="display:none;" class="sign greenglow">
                                     <li>   <i class="icon-check"></i><br>
-                                        <font color="red"> 
+                                        <font color="red">
                                             User registration successful.<br>
                                             Your login Url already send to your email.
 
@@ -235,7 +235,7 @@ Services Section
                                 <div style="display:none;" id="regnSuc11" class="sign redglow">
                                     <i class="icon-mail"></i><br>
                                     <font color="red">    Email Exist.</font>
-                                </div> 
+                                </div>
                             </ul>
                         </form>
                     </div>

@@ -62,51 +62,51 @@ Header
             <nav id="nav-menu-container"  class="navbar navbar-dark bg-dark">
                 <ul class="nav-menu">
                     <li data-toggle="modal" data-target="#myModal"><a href="#">Crear curso</a></li>
-                    <li><a href="admin.html">Atrás</a></li>
+                    <li><a href="admin.php">Atrás</a></li>
                 </ul>
             </nav><!-- #nav-menu-container -->
             </div>
-        </header><!-- #header -->    
+        </header><!-- #header -->
 
 
     <div id="myModal" class="modal fade">
         <div class="modal-dialog modal-login">
             <div class="modal-content">
-                <div class="modal-header">     
-                    <h4 class="modal-title">Creación de curso</h4> 
+                <div class="modal-header">
+                    <h4 class="modal-title">Creación de curso</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
                     <form action="/examples/actions/confirmation.php" method="post">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="nombre" placeholder="Nombre" required="required">   
+                            <input type="text" class="form-control" name="nombre" placeholder="Nombre" required="required">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="descripcion" placeholder="Descripción" required="required"> 
+                            <input type="text" class="form-control" name="descripcion" placeholder="Descripción" required="required">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="profe" placeholder="Profesor" required="required"> 
+                            <input type="text" class="form-control" name="profe" placeholder="Profesor" required="required">
                         </div>
                         <div class="form-group">
-                            <input type="number" class="form-control" name="cupos" placeholder="Cantidad de cupos" required="required">   
+                            <input type="number" class="form-control" name="cupos" placeholder="Cantidad de cupos" required="required">
                         </div>
                         <div class="form-group">
-                            <input type="number" class="form-control" name="precio" placeholder="Precio" required="required">   
+                            <input type="number" class="form-control" name="precio" placeholder="Precio" required="required">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="horario" placeholder="Horario" required="required"> 
+                            <input type="text" class="form-control" name="horario" placeholder="Horario" required="required">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="duracion" placeholder="Duración" required="required"> 
+                            <input type="text" class="form-control" name="duracion" placeholder="Duración" required="required">
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary btn-lg btn-block login-btn">Crear curso</button>
-                        </div>        
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
 
 
 
@@ -172,7 +172,7 @@ Header
                                     </tr>
                                 </tbody>
                                 <!--Table body-->
-                            </table> 
+                            </table>
                         </div>
                         <div class="col-sm-10">
                         </div>
@@ -233,7 +233,7 @@ Header
                             <center>
                                 <p>Esta seguro que desea desmatricular al estudiante?</p>
                                 <button class="btn btn-success btn-md" class="close" data-dismiss="modal" aria-hidden="true">Si</button>
-                                <button class="btn btn-danger btn-md" class="close" data-dismiss="modal" aria-hidden="true">No</button> 
+                                <button class="btn btn-danger btn-md" class="close" data-dismiss="modal" aria-hidden="true">No</button>
                             </center>
                         </div>
 
