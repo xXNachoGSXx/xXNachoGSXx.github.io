@@ -12,7 +12,7 @@ include "conexion.php";
       	mysqli_stmt_execute($call);
 
         //Aqui hay que ver como devolverse a la pantalla anterior limpiando todo pero
-        //aun con el mismo usuario
+        //aun con el mismo usuario, esta en duro ahorita
         echo "<script>
              alert('Centro creado satisfactoriamente');
              window.location.replace('../super.php');
