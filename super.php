@@ -1,3 +1,9 @@
+<?php
+  // Include DB conexion file
+  include "Scripts/conexion.php";
+?>
+
+
 <!DOCTYPE html>
 <title> Sistema de Matrícula</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -52,10 +58,8 @@ Header
 
         <nav id="nav-menu-container"class="navbar navbar-dark bg-dark">
             <ul class="nav-menu">
-
-                <li><a href="#about">Ver Centros</a></li>
                 <li><a href="#services">Crear Centro</a></li>
-                <li data-toggle="modal" data-target="#myModal"><a href="index.php">Salir</a></li>
+                <li><a href="index.php">Salir</a></li>
             </ul>
         </nav><!-- #nav-menu-container -->
         </div>
@@ -81,10 +85,17 @@ About Us Section
                                 <div class="form-group row">
                                     <label for="" class="col-sm-2 form-control-label">Comunidad</label>
                                     <div class="col-sm-10">
+                                      <?php
+                                        $sql = "call getcomunidades()";
+                                        $res = $conn->query($sql);
+                                      ?>
                                         <select class="form-control selectpicker" id="select-comunidad" data-live-search="true">
-                                            <option data-tokens="Santo Domingo">Santo Domingo</option>
-                                            <option data-tokens="San Bosco">San Bosco</option>
-                                            <option data-tokens="Misioneros Josefinos">Misioneros Josefinos</option>
+                                          <?php while( $row = $res->fetch_array() ) {
+                                            if(!empty($row['nombre'])) {?>
+                                            <option data-tokens="<?php echo $row['nombre']; ?>" value="<?php echo $row['idcomunidad']; ?>">
+                                            <?php echo $row['nombre']; ?>
+                                            </option>
+                                            <?php } } ?>
                                         </select>
                                     </div>
                                 </div>
@@ -157,34 +168,22 @@ Services Section
         </div>
 
         <center>
-            <form method="post" id="userRegisterFrm" class="log-frm" name="userRegisterFrm">
+            <form action="Scripts/crearCentro.php" method="POST" class="log-frm">
                 <div class="form-group row">
                     <div class="col-xs-4"></div>
                     <div class="col-xs-4">
                         <ul>
                             <label>Nombre</label>
-                            <input type="text" placeholder="Nombre" name="nombre" class="form-control" required>
+                            <input type="text" id="nombre" placeholder="Nombre" name="nombre" class="form-control" required>
                             <label>Dirección</label>
-                            <input type="text" placeholder="Dirección" name="ubicacion" class="form-control" required>
+                            <input type="text" id="direccion" placeholder="Dirección" name="direccion" class="form-control" required>
                             <label>Número Telefónico</label>
-                            <input type="text" placeholder="Número Telefónico" name="telefono" class="form-control" required>
+                            <input type="text" id="telefono" placeholder="Número Telefónico" name="telefono" class="form-control" required>
                             <label>Encargado</label>
-                            <input type="text" placeholder="Nombre" name="encargado" class="form-control" required>
-
+                            <input type="text" id="encargado" placeholder="Nombre" name="encargado" class="form-control" required>
                             <br><br>
 
-                            <button name="userRegBtn" class="btn btn-primary">Registrar</button></li>
-                        <div style="display:none;" class="sign greenglow">
-                            <i class="icon-check"></i><br>
-                            <font color="red">
-                                User registration successful.<br>
-                                Your login Url already send to your email.
-                            </font>
-                        </div>
-                        <div style="display:none;" id="regnSuc11" class="sign redglow">
-                            <i class="icon-mail"></i><br>
-                            <font color="red">    Email Exist.</font>
-                        </div>
+                            <button type="submit" class="btn btn-primary">Registrar</button>
                         </ul>
                 </div>
                 <div class="col-xs-4"></div>
@@ -249,7 +248,7 @@ Services Section
     <footer>
         <center>
             <div class="footer-top">
-                <small>&copy; Copyright 2019, Gabriel Solórzano, Carlo Gómez</small>
+                <small>&copy; Copyright 2019, Gabriel Solórzano, Carlos Gómez</small>
             </div>
         </center>
     </footer>
