@@ -103,8 +103,8 @@ Inicio de sesión
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <li><a href="admin.php">Administrador</a></li>
-                    <li><a href="super.php">Usuario Alpha</a></li>
+                    <!-- <li><a href="admin.php">Administrador</a></li>
+                    <li><a href="super.php">Usuario Alpha</a></li> -->
                 </div>
             </div>
         </div>

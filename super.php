@@ -1,6 +1,7 @@
 <?php
   // Include DB conexion file
   include "Scripts/conexion.php";
+  session_start();
 ?>
 
 
@@ -81,7 +82,7 @@ About Us Section
                 <div class="col-lg-6 content order-lg-1 order-2">
                     <div class="box">
                         <div class="box-body">
-                            <form>
+                            <form action="Scripts/infoComunidad.php" method="POST">
                                 <div class="form-group row">
                                     <label for="" class="col-sm-2 form-control-label">Comunidad</label>
                                     <div class="col-sm-10">
@@ -89,7 +90,8 @@ About Us Section
                                         $sql = "call getcomunidades()";
                                         $res = $conn->query($sql);
                                       ?>
-                                        <select class="form-control selectpicker" id="select-comunidad" data-live-search="true">
+                                        <select class="form-control selectpicker" id="select-comunidad" name="select-comunidad" data-live-search="true">
+                                      <!-- <option value="0">Seleccione una comunidad</option> -->
                                           <?php while( $row = $res->fetch_array() ) {
                                             if(!empty($row['nombre'])) {?>
                                             <option data-tokens="<?php echo $row['nombre']; ?>" value="<?php echo $row['idcomunidad']; ?>">
@@ -97,31 +99,36 @@ About Us Section
                                             </option>
                                             <?php } } ?>
                                         </select>
+                                        <center>
+                                            <br><br>
+                                            <button type="submit" class="btn btn-primary">Visualizar</button>
+                                        </center>
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
                     <h2 class="title">Información General</h2>
+                    <?php $fila =  unserialize($_SESSION["infoComunidad"]);?>
                     <table class="table table-borderless" id="tabla-comunidad">
                         <thead>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>Nombre:</td>
-                                <td>Centro Comunitario de San Bosco</td>
+                                <td><?php echo $fila['nombre']; ?></td>
                             </tr>
                             <tr>
                                 <td>Ubicación:</td>
-                                <td>San Bosco de Santa Bárbara de Heredia. Frente a la plaza de deportes.</td>
+                                <td><?php echo $fila['ubicacion']; ?></td>
                             </tr>
                             <tr>
                                 <td>Teléfono:</td>
-                                <td>2269 5699</td>
+                                <td><?php echo $fila['telefono']; ?></td>
                             </tr>
                             <tr>
                                 <td>Encargado:</td>
-                                <td>Mary Chavarria</td>
+                                <td><?php echo $fila['encargado']; ?></td>
                             </tr>
                         </tbody>
                     </table>

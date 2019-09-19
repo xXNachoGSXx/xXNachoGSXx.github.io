@@ -1,3 +1,9 @@
+<?php
+include "Scripts/conexion.php";
+session_start();
+$idCom = $_SESSION["idComunidad"];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -120,14 +126,21 @@ Header
                 </div>
                 <label for="" class="col-sm-2 form-control-label"  >Seleccione curso</label>
                 <div class="col-sm-10">
+                  <?php
+                    $sql = "call getNombresCursoCm($idCom)";
+                    $res = $conn->query($sql);
+                  ?>
                     <select class="form-control selectpicker" id="select-country" data-live-search="true">
-                        <option data-tokens="Tejido">Tejido</option>
-                        <option data-tokens="Cocina Tradcional">Cocina Tradcional</option>
-                        <option data-tokens="Manejo de alimentos">Manejo de alimentos</option>
+                      <?php while( $row = $res->fetch_array() ) {
+                        if(!empty($row['nombre'])) {?>
+                        <option data-tokens="<?php echo $row['nombre']; ?>" value="<?php echo $row['idcurso']; ?>">
+                        <?php echo $row['nombre']; ?>
+                        </option>
+                        <?php } } ?>
                     </select>
                 </div>
                 <center>
-                    <br><br> <button class="btn default">Visualizar</button>
+                    <br><br> <button class="btn btn-primary">Visualizar</button>
                 </center>
             </div>
 
