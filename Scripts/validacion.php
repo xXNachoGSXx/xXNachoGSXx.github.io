@@ -1,6 +1,9 @@
 <?php
 include "conexion.php";
 session_start();
+if (!isset($_SESSION['user'])){
+    header("Location: ../index.php");
+}
 unset ($_SESSION['infoComunidad']);
 unset ($_SESSION['infoComunidadAdmin']);
 unset ($_SESSION['infoCurso']);
@@ -20,6 +23,8 @@ unset($_SESSION["nombreEstudiante"]);
           $procOutput_res = $result['@res'];
           if($procOutput_res != 0){
             $procOutput_userTipo = $result['@ptipo'];
+            $_SESSION["user"] = $usuario;
+            $_SESSION["tipo"] = $procOutput_userTipo;
             if($procOutput_userTipo == 1){
               header("Location: ../super.php");
             }

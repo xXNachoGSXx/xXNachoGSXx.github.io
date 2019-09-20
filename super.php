@@ -2,6 +2,12 @@
   // Include DB conexion file
   include "Scripts/conexion.php";
   session_start();
+  if (!isset($_SESSION['user'])){
+      header("Location: index.php");
+  }
+  if($_SESSION['tipo'] != 1){
+    header("Location: index.php");
+  }
 ?>
 
 

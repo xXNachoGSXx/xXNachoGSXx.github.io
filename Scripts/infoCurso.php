@@ -1,6 +1,9 @@
 <?php
   include "conexion.php";
   session_start();
+  if (!isset($_SESSION['user'])){
+      header("Location: ../index.php");
+  }
   $idCurso = $_POST['select-curso'];
   if($_POST){
     $sql = "call getInfoCurso($idCurso)";

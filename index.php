@@ -1,6 +1,7 @@
 <?php
 // Include DB conexion file
 include "Scripts/conexion.php";
+unset($_SESSION["user"]);
 ?>
 
 

@@ -1,6 +1,9 @@
 <?php
 include "conexion.php";
 session_start();
+if (!isset($_SESSION['user'])){
+    header("Location: ../index.php");
+}
   if($_POST){
     $ced = $_SESSION["cedulaEstudiante"];
     $curso = $_POST["select-curso"];

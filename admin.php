@@ -4,6 +4,12 @@ session_start();
 $idCom = $_SESSION["idComunidad"];
 unset ($_SESSION['infoCurso']);
 unset($_SESSION["infoMatricula"]);
+if (!isset($_SESSION['user'])){
+    header("Location: index.php");
+}
+if($_SESSION['tipo'] != 2){
+  header("Location: index.php");
+}
  ?>
 
 <!DOCTYPE html>

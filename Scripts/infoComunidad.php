@@ -1,6 +1,9 @@
 <?php
 include "conexion.php";
 session_start();
+if (!isset($_SESSION['user'])){
+    header("Location: ../index.php");
+}
 unset ($_SESSION['infoComunidad']);
 unset ($_SESSION['infoComunidadAdmin']);
 $idComunidad = $_POST['select-comunidad'];

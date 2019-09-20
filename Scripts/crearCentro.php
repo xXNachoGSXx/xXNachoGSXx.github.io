@@ -1,5 +1,9 @@
 <?php
 include "conexion.php";
+session_start();
+if (!isset($_SESSION['user'])){
+    header("Location: ../index.php");
+}
     if($_POST){
         $nombre = $_POST['nombre'];
         $direccion =  $_POST['direccion'];
