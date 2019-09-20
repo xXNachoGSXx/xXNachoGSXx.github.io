@@ -2,6 +2,9 @@
 include "conexion.php";
 session_start();
 unset ($_SESSION['infoComunidad']);
+unset ($_SESSION['infoComunidadAdmin']);
+unset ($_SESSION['infoCurso']);
+unset($_SESSION["nombreEstudiante"]);
     if($_POST){
         $usuario = $_POST['usuario'];
         $clave =  $_POST['clave'];

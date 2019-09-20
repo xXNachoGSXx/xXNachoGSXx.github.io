@@ -2,6 +2,7 @@
 include "Scripts/conexion.php";
 session_start();
 $idCom = $_SESSION["idComunidad"];
+unset($_SESSION["nombreEstudiante"]);
 ?>
 
 <!DOCTYPE html>
@@ -130,7 +131,8 @@ Header
                     $sql = "call getNombresCursoCm($idCom)";
                     $res = $conn->query($sql);
                   ?>
-                    <select class="form-control selectpicker" id="select-country" data-live-search="true">
+                  <form action="Scripts/infoCurso.php" method="POST">
+                    <select class="form-control selectpicker" id="select-curso" name="select-curso" data-live-search="true">
                       <?php while( $row = $res->fetch_array() ) {
                         if(!empty($row['nombre'])) {?>
                         <option data-tokens="<?php echo $row['nombre']; ?>" value="<?php echo $row['idcurso']; ?>">
@@ -140,8 +142,9 @@ Header
                     </select>
                 </div>
                 <center>
-                    <br><br> <button class="btn btn-primary">Visualizar</button>
+                    <br><br> <button type="submit" class="btn btn-primary">Visualizar</button>
                 </center>
+              </form>
             </div>
 
 
@@ -156,32 +159,33 @@ Header
                         <div class="col-sm-10">
                         </div>
                         <div class="col-sm">
+                          <?php $fila =  unserialize($_SESSION["infoCurso"]);?>
                             <table id="tablePreview" class="table table-bordered">
                                 <!--Table body-->
                                 <tbody>
                                     <tr>
                                         <td><b>Nombre</b></td>
-                                        <td>Tejido</td>
+                                        <td><?php echo $fila['nombre']; ?></td>
                                     </tr>
                                     <tr>
                                         <td><b>Descripción</b></td>
-                                        <td>Se tratarán los temas principales con respecto al tejido con telar.</td>
+                                        <td><?php echo $fila['descripcion']; ?></td>
                                     </tr>
                                     <tr>
                                         <td><b>Profesor</b></td>
-                                        <td>Andrea Montero</td>
+                                        <td><?php echo $fila['profesor']; ?></td>
                                     </tr>
                                     <tr>
                                         <td><b>Horario</b></td>
-                                        <td>Jueves 6pm - 8 pm</td>
+                                        <td><?php echo $fila['horario']; ?></td>
                                     </tr>
                                     <tr>
                                         <td><b>Precio</b></td>
-                                        <td>15000</td>
+                                        <td><?php echo $fila['precio']; ?></td>
                                     </tr>
                                     <tr>
                                         <td><b>Cupos</b></td>
-                                        <td>20</td>
+                                        <td><?php echo $fila['cuposdisponibles']; ?></td>
                                     </tr>
                                 </tbody>
                                 <!--Table body-->
@@ -208,28 +212,12 @@ Header
                             <tr>
                                 <th>Cedula</th>
                                 <th>Nombre</th>
-                                <th>Apellido</th>
+                                <th>Primer Apellido</th>
+                                <th>Segundo Apellido</th>
                                 <th class="text-center">Acción</th>
                             </tr>
                         </thead>
-                        <tr>
-                            <td>402430534</td>
-                            <td>Carlos</td>
-                            <td>Gómez</td>
-                            <td class="text-center"> <a href="#" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#desma"><span class="glyphicon glyphicon-remove"></span> Desmatricular</a></td>
-                        </tr>
-                        <tr>
-                            <td>116920331</td>
-                            <td>Gabriel</td>
-                            <td>Solózano</td>
-                            <td class="text-center"> <a href="#" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#desma"><span class="glyphicon glyphicon-remove"></span> Desmatricular</a></td>
-                        </tr>
-                        <tr>
-                            <td>402220111</td>
-                            <td>Adriana</td>
-                            <td>Álvarez</td>
-                            <td class="text-center"><a href="#" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#desma"><span class="glyphicon glyphicon-remove"></span> Desmatricular</a></td>
-                        </tr>
+                        <?php echo $_SESSION["infoMatricula"]; ?>
                     </table>
 
                 </div>

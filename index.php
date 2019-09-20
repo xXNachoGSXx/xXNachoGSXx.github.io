@@ -1,6 +1,6 @@
 <?php
-  // Include DB conexion file
-  include "Scripts/conexion.php";
+// Include DB conexion file
+include "Scripts/conexion.php";
 ?>
 
 
@@ -104,7 +104,7 @@ Inicio de sesión
                 </div>
                 <div class="modal-footer">
                     <!-- <li><a href="admin.php">Administrador</a></li>
-                    <li><a href="super.php">Usuario Alpha</a></li> -->
+<li><a href="super.php">Usuario Alpha</a></li> -->
                 </div>
             </div>
         </div>
@@ -147,15 +147,15 @@ About Us Section
                                                 <div class="form-group row">
                                                     <label for="" class="col-sm-2 form-control-label">Comunidad</label>
                                                     <div class="col-sm-10">
-                                                      <?php
+                                                        <?php
                                                         $sql = "call getcomunidades()";
                                                         $res = $conn->query($sql);
-                                                      ?>
+                                                        ?>
                                                         <select class="form-control selectpicker" id="select-comunidad" data-live-search="true">
-                                                          <?php while( $row = $res->fetch_array() ) {
-                                                            if(!empty($row['nombre'])) {?>
+                                                            <?php while( $row = $res->fetch_array() ) {
+    if(!empty($row['nombre'])) {?>
                                                             <option data-tokens="<?php echo $row['nombre']; ?>" value="<?php echo $row['idcomunidad']; ?>">
-                                                            <?php echo $row['nombre']; ?>
+                                                                <?php echo $row['nombre']; ?>
                                                             </option>
                                                             <?php } } ?>
                                                         </select>

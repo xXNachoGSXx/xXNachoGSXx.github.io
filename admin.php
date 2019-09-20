@@ -2,7 +2,8 @@
 include "Scripts/conexion.php";
 session_start();
 $idCom = $_SESSION["idComunidad"];
-//echo $_SESSION["idComunidad"];
+unset ($_SESSION['infoCurso']);
+unset($_SESSION["infoMatricula"]);
  ?>
 
 <!DOCTYPE html>
@@ -90,15 +91,15 @@ Header
                             <div class="column1">
                                 <label for="" class="col-sm-2 form-control-label" id="cedula-estudiante"  >Cédula</label>
                                 <div class="col-sm-10">
-                                    <input type="number" name="quantity" min="1">
+                                  <form action="Scripts/infoBasicaEstudiante.php" method="POST">
+                                    <input type="number" name="cedula" id="cedula" min="1" required>
                                     <button type="submit"><i class="fa fa-search"></i></button>
+                                  </form>
                                     <br><br>
                                 </div>
-                                <label for="" class="col-sm-2 form-control-label" id="nombre-estudiante"  >Nombre</label>
+                                <label for="" class="col-sm-2 form-control-label" id="nombre-estudiante">Nombre</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="quantity" readonly>
-
-
+                                    <input type="text" name="nombre" value="<?php echo $_SESSION["nombreEstudiante"]; ?>"readonly>
                                 </div>
                             </div>
 
@@ -109,7 +110,8 @@ Header
                                     $sql = "call getNombresCursoCm($idCom)";
                                     $res = $conn->query($sql);
                                   ?>
-                                    <select class="form-control selectpicker" id="select-curso" data-live-search="true">
+                                  <form action="Scripts/matricular.php" method="POST">
+                                    <select class="form-control selectpicker" id="select-curso" name="select-curso" data-live-search="true">
                                       <?php while( $row = $res->fetch_array() ) {
                                         if(!empty($row['nombre'])) {?>
                                         <option data-tokens="<?php echo $row['nombre']; ?>" value="<?php echo $row['idcurso']; ?>">
@@ -121,10 +123,13 @@ Header
                             </div>
                         </div>
                     </div>
+                    <center>
+                      <br><br> <button type="submit" class="btn btn-success">Matricular</button>
+                    </center>
+                  </form>
                 </section><!-- #call-to-action -->
 
                 <center>
-                    <br><br> <button class="btn btn-success">Matricular</button>
                     <br><br>  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Crear estudiante</button>
                 </center>
             </div>
@@ -141,7 +146,7 @@ Header
 
                     <div class="modal-body text-center">
                         <div class="col-md-12 col-sm-12 no-padng">
-                            <form method="post" id="userRegisterFrm" class="log-frm" name="userRegisterFrm">
+                            <form action="Scripts/crearEstudiante.php" method="post" id="userRegisterFrm" class="log-frm" name="userRegisterFrm">
                                 <ul>
                                     <label>Cédula</label>
                                     <input type="number" placeholder="Cédula" name="cedula" class="form-control" required>
@@ -152,23 +157,11 @@ Header
                                     <label>Segundo Apellido</label>
                                     <input type="text" placeholder="Segundo Apellido" name="lName2" class="form-control" required>
                                     <label>Télefono</label>
-                                    <input type="number" placeholder="Teléfono" name="telefono" class="form-control" required>
+                                    <input type="text" placeholder="Teléfono" name="telefono" class="form-control" required>
                                     <label>Correo</label>
-                                    <input type="password" placeholder="Correo" name="correo" class="form-control" required>
+                                    <input type="text" placeholder="Correo" name="correo" class="form-control" required>
                                     <br>
                                     <button name="userRegBtn" class="btn btn-primary">Registrar</button>
-                                    <div style="display:none;" class="sign greenglow">
-                                        <li>   <i class="icon-check"></i><br>
-                                            <font color="red">
-                                                User registration successful.<br>
-                                                Your login Url already send to your email.
-
-                                            </font>
-                                    </div>
-                                    <div style="display:none;" id="regnSuc11" class="sign redglow">
-                                        <i class="icon-mail"></i><br>
-                                        <font color="red">    Email Exist.</font>
-                                    </div>
                                 </ul>
                             </form>
                         </div>

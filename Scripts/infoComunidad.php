@@ -1,13 +1,30 @@
 <?php
-  include "conexion.php";
-  session_start();
-  $idComunidad = $_POST['select-comunidad'];
-  if($_POST){
+include "conexion.php";
+session_start();
+unset ($_SESSION['infoComunidad']);
+unset ($_SESSION['infoComunidadAdmin']);
+$idComunidad = $_POST['select-comunidad'];
+if($_POST){
     $sql = "call getInfoComunidad($idComunidad)";
     $res = $conn->query($sql);
     $row = mysqli_fetch_assoc($res);
-    //echo $row['ubicacion'];
     $_SESSION["infoComunidad"]=serialize($row);
+    $res->close();
+    $conn->next_result();
+    $sql = "call getAdminComunidad($idComunidad)";
+    $res = $conn->query($sql) or die ('Unable to execute query. '. mysqli_error($conn));
+    //$row = mysqli_fetch_array($res);
+    $str = "";
+    while ($row = $res->fetch_array()) {
+        if(!empty($row['nombre'])) {
+            $str .= '<tr>
+          <td>'.$row['nombre']." ".$row['apellido1']." ".$row['apellido2']."</td>
+          <td>".$row['telefono']."</td>
+          <td>".$row['usuario']."</td>
+      </tr>";
+        }
+    }
+    $_SESSION["infoComunidadAdmin"]=$str;
     header("Location: ../super.php");
-  }
+}
 ?>

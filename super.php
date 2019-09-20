@@ -138,22 +138,14 @@ About Us Section
                     <table class="table" id="tabla-administradores">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Usuario</th>
+                              <!-- ARREGLAR -->
+                                <th>Nombre</th>
+                                <th>Teléfono</th>
+                                <th>Usuario</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Calos Gomez Segura</td>
-                                <td>nacho4real</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Gabriel Solórzano</td>
-                                <td>gabritico</td>
-                            </tr>
+                          <?php echo $_SESSION["infoComunidadAdmin"];?>
                         </tbody>
                     </table>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Añadir</button>
