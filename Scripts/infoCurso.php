@@ -10,6 +10,7 @@
     $res = $conn->query($sql);
     $row = mysqli_fetch_assoc($res);
     $_SESSION["infoCurso"]=serialize($row);
+    $_SESSION["idCur"] = $idCurso;
 
     $res->close();
     $conn->next_result();
@@ -23,7 +24,7 @@
           <td>'.$row['nombre'].'</td>
           <td>'.$row['primerapellido'].'</td>
           <td>'.$row['segundoapellido'].'</td>
-          <td class="text-center"> <a href="#" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#desma"><span class="glyphicon glyphicon-remove"></span> Desmatricular</a></td>
+          <td class="text-center"> <a id="'.$row['cedula'].'" onClick="reply_click(this.id)" href="#" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#desma"><span class="glyphicon glyphicon-remove"></span> Desmatricular</a></td>
           </tr>';
         }
     }

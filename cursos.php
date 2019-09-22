@@ -239,8 +239,10 @@ Header
                         <div class="modal-body">
                             <center>
                                 <p>Esta seguro que desea desmatricular al estudiante?</p>
-                                <button class="btn btn-success btn-md" class="close" data-dismiss="modal" aria-hidden="true">Si</button>
-                                <button class="btn btn-danger btn-md" class="close" data-dismiss="modal" aria-hidden="true">No</button>
+                                <form action="Scripts/desmatricular.php" method="POST">
+                                  <button type="submit" value="0" name="botonSi" class="btn btn-success btn-md" class="close" aria-hidden="true">Si</button>
+                                  <button onClick="reset()" class="btn btn-danger btn-md" class="close" data-dismiss="modal" aria-hidden="true">No</button>
+                                </form>
                             </center>
                         </div>
 
@@ -305,7 +307,14 @@ Footer
     <!-- Template Main Javascript File -->
     <script src="js/main.js"></script>
     <script src="js/funproyecto.js"></script>
-
+    <script type="text/javascript">
+      function reply_click(clicked_id){
+        document.getElementsByName("botonSi")[0].value=clicked_id;
+      }
+      function reset(){
+        document.getElementsByName("botonSi")[0].value=0;
+      }
+    </script>
 
     </body>
 </html>

@@ -7,7 +7,6 @@ if (!isset($_SESSION['user'])){
   if($_POST){
     $ced = $_SESSION["cedulaEstudiante"];
     $curso = $_POST["select-curso"];
-    $idCom = $_SESSION["idComunidad"];
     $call = mysqli_prepare($conn, 'CALL matricular(?,?)');
 
     mysqli_stmt_bind_param($call,'ss', $ced, $curso);
