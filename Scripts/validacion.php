@@ -8,6 +8,8 @@ unset ($_SESSION['infoComunidad']);
 unset ($_SESSION['infoComunidadAdmin']);
 unset ($_SESSION['infoCurso']);
 unset($_SESSION["nombreEstudiante"]);
+unset($_SESSION["idComunidad"]);
+unset($_SESSION["clase"]);
     if($_POST){
         $usuario = $_POST['usuario'];
         $clave =  $_POST['clave'];
@@ -25,6 +27,7 @@ unset($_SESSION["nombreEstudiante"]);
             $procOutput_userTipo = $result['@ptipo'];
             $_SESSION["user"] = $usuario;
             $_SESSION["tipo"] = $procOutput_userTipo;
+            $_SESSION["clase"] = "btn btn-primary hide";
             if($procOutput_userTipo == 1){
               header("Location: ../super.php");
             }

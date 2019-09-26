@@ -7,6 +7,7 @@ if (!isset($_SESSION['user'])){
 unset ($_SESSION['infoComunidad']);
 unset ($_SESSION['infoComunidadAdmin']);
 $idComunidad = $_POST['select-comunidad'];
+$_SESSION["idComunidad"] = $idComunidad;
 if($_POST){
     $sql = "call getInfoComunidad($idComunidad)";
     $res = $conn->query($sql);
@@ -28,6 +29,7 @@ if($_POST){
         }
     }
     $_SESSION["infoComunidadAdmin"]=$str;
+    $_SESSION["clase"] = "btn btn-primary";
     header("Location: ../super.php");
 }
 ?>

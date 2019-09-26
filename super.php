@@ -154,7 +154,7 @@ About Us Section
                           <?php echo $_SESSION["infoComunidadAdmin"];?>
                         </tbody>
                     </table>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Añadir</button>
+                    <button type="button" class="<?php echo $_SESSION["clase"]; ?>" data-toggle="modal" data-target="#myModal" id="botonAñadir">Añadir</button>
                 </div>
             </div>
         </div>
@@ -208,7 +208,7 @@ Services Section
 
                 <div class="modal-body text-center">
                     <div class="col-md-12 col-sm-12 no-padng">
-                        <form method="post" id="userRegisterFrm" class="log-frm" name="userRegisterFrm">
+                        <form action="Scripts/registrarAdmin.php" method="POST" id="userRegisterFrm" class="log-frm" name="userRegisterFrm">
                             <ul>
                                 <label>Cédula</label>
                                 <input type="number" placeholder="Identificación" name="cedula" class="form-control" required>
@@ -220,26 +220,10 @@ Services Section
                                 <input type="text" placeholder="Segundo Apellido" name="lName2" class="form-control" required>
                                 <label>Teléfono</label>
                                 <input type="number" placeholder="Teléfono" name="telefono" class="form-control" required>
-                                <label>Usuario</label>
-                                <input type="text" placeholder="Usuario" name="usuario" class="form-control" required>
-                                <label>Contraseña</label>
-                                <input type="password" placeholder="Contraseña" name="password" class="form-control" required>
-                                <label>Confirmar Contraseña</label>
-                                <input type="password" placeholder="Confirmar Contraseña" name="repassword" class="form-control" required>
+                                <label>Nombre de Usuario</label>
+                                <input type="text" placeholder="Nombre de Usuario" name="usuario" class="form-control" required>
                                 <br>
-                                <button name="userRegBtn" class="btn btn-primary">Registrar</button>
-                                <div style="display:none;" class="sign greenglow">
-                                    <li>   <i class="icon-check"></i><br>
-                                        <font color="red">
-                                            User registration successful.<br>
-                                            Your login Url already send to your email.
-
-                                        </font>
-                                </div>
-                                <div style="display:none;" id="regnSuc11" class="sign redglow">
-                                    <i class="icon-mail"></i><br>
-                                    <font color="red">    Email Exist.</font>
-                                </div>
+                                <button type="submit" name="userRegBtn" class="btn btn-primary">Registrar</button>
                             </ul>
                         </form>
                     </div>
@@ -276,6 +260,15 @@ Services Section
 
     <!-- Template Main Javascript File -->
     <script src="js/main.js"></script>
+    <script>
+    $("#botonAñadir").on("click", function (event) {
+            if ($(this).hasClass("disabled")) {
+                event.stopPropagation()
+            } else {
+                $('#myModal').modal("show");
+            }
+        });
+    </script>
 
     </body>
 </html>
