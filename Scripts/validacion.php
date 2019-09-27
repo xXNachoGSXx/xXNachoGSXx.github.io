@@ -10,6 +10,8 @@ unset ($_SESSION['infoCurso']);
 unset($_SESSION["nombreEstudiante"]);
 unset($_SESSION["idComunidad"]);
 unset($_SESSION["clase"]);
+unset($_SESSION["nuevo"]);
+unset($_SESSION["id"]);
     if($_POST){
         $usuario = $_POST['usuario'];
         $clave =  $_POST['clave'];
@@ -37,6 +39,13 @@ unset($_SESSION["clase"]);
               $res = $conn->query($sql);
               $row = mysqli_fetch_assoc($res);
               $_SESSION["idComunidad"]=$row['idcomunidad'];
+              $res->close();
+              $conn->next_result();
+              $sql = "call getNuevo($procOutput_idUSer)";
+              $res = $conn->query($sql);
+              $row = mysqli_fetch_assoc($res);
+              $_SESSION["id"]=$procOutput_idUSer;
+              $_SESSION["nuevo"]=$row['nuevo'];
               header("Location: ../admin.php");
             }
           }

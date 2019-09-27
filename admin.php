@@ -46,7 +46,14 @@ if($_SESSION['tipo'] != 2){
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css" rel="stylesheet" />
+        <script type="text/javascript">
+          <?php if($_SESSION['nuevo'] == 1){
+            echo "$(window).on('load',function(){
+                $('#changePass').modal('show');
+            });";
+          } ?>
 
+        </script>
 
 
         <!-- =======================================================
@@ -182,7 +189,36 @@ Header
         <!--==========================
 Hero Section
 ============================-->
+<div id="changePass" class="modal" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Cambiar Contraseña</h4>
+                <br>
+                <p>Por favor cambie su clave termporal por su clave permanente.</p>
+            </div>
 
+            <div class="modal-body text-center">
+                <div class="col-md-12 col-sm-12 no-padng">
+                    <form action="Scripts/cambiarClave.php" method="post" id="cambiarCont" class="log-frm" name="userRegisterFrm">
+                        <ul>
+                            <label>Contraseña</label>
+                            <input type="password" placeholder="Contraseña" name="password" id="password" class="form-control" required>
+                            <label>Confirmar Contraseña</label>
+                            <input type="password" placeholder="Confirmar Contraseña" name="confirm_password" id="confirm_password" class="form-control" required>
+                            <span id='message'></span>
+                            <br>
+                            <br>
+                            <button type="button" name="userRegBtn" class="btn btn-primary" onClick="check()">Actualizar</button>
+                        </ul>
+                    </form>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -294,9 +330,20 @@ Footer
 
         <!-- Contact Form JavaScript File -->
         <script src="contactform/contactform.js"></script>
-
-
-
+        <script>
+        $('#password, #confirm_password').on('keyup', function () {
+          if ($('#password').val() != $('#confirm_password').val()) {
+            $('#message').html('Contraseñas no coinciden').css('color', 'red');
+          }
+          else
+            $('#message').html('').css('color', 'green');
+          });
+        function check(){
+          if ($('#password').val() == $('#confirm_password').val()) {
+            document.getElementById('cambiarCont').submit();
+          }
+        }
+        </script>
 
         <!-- Template Main Javascript File -->
         <script src="js/main.js"></script>
