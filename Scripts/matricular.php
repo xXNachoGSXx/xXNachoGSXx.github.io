@@ -36,6 +36,7 @@ if (!isset($_SESSION['user'])){
           }
       }
       $_SESSION["historialmatricula"]=$str;
+      unset($_SESSION["nombreEstudiante"]);
       //header("Location: ../admin.php");
 
 

@@ -88,7 +88,7 @@ About Us Section
                 <div class="col-lg-6 content order-lg-1 order-2">
                     <div class="box">
                         <div class="box-body">
-                            <form action="Scripts/infoComunidad.php" method="POST">
+                            <form action="Scripts/infoComunidad.php" id="ver" method="POST">
                                 <div class="form-group row">
                                     <label for="" class="col-sm-2 form-control-label">Comunidad</label>
                                     <div class="col-sm-10">
@@ -97,7 +97,7 @@ About Us Section
                                         $res = $conn->query($sql);
                                       ?>
                                         <select class="form-control selectpicker" id="select-comunidad" name="select-comunidad" data-live-search="true">
-                                      <!-- <option value="0">Seleccione una comunidad</option> -->
+                                          <option data-hidden="true" value="">Seleccione un curso</option>
                                           <?php while( $row = $res->fetch_array() ) {
                                             if(!empty($row['nombre'])) {?>
                                             <option data-tokens="<?php echo $row['nombre']; ?>" value="<?php echo $row['idcomunidad']; ?>">
@@ -107,7 +107,7 @@ About Us Section
                                         </select>
                                         <center>
                                             <br><br>
-                                            <button type="submit" class="btn btn-primary">Visualizar</button>
+                                            <button type="button" onClick="checkUser()" class="btn btn-primary">Visualizar</button>
                                         </center>
                                     </div>
                                 </div>
@@ -268,6 +268,15 @@ Services Section
                 $('#myModal').modal("show");
             }
         });
+        function checkUser(){
+          var books = $('#select-comunidad');
+          if(books.val() === ''){
+            alert('Debe de seleccionar una comunidad.');
+          }
+          else {
+            document.getElementById('ver').submit();
+          }
+        }
     </script>
 
     </body>

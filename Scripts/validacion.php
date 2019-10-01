@@ -12,8 +12,7 @@ unset($_SESSION["id"]);
 unset($_SESSION["historialmatricula"]);
     if($_POST){
         $usuario = $_POST['usuario'];
-        $clave =  $_POST['clave'];
-
+        $clave =  crypt($_POST['clave'], '$5$YourSaltyStringz$');
         $call = mysqli_prepare($conn, 'CALL validarUser(?, ?, @res, @ptipo,@pid)');
 
       	mysqli_stmt_bind_param($call,'ss', $usuario, $clave);

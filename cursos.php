@@ -9,6 +9,7 @@ if (!isset($_SESSION['user'])){
 if($_SESSION['tipo'] != 2){
   header("Location: index.php");
 }
+unset($_SESSION["nombreEstudiante"]);
 ?>
 
 <!DOCTYPE html>
@@ -137,8 +138,9 @@ Header
                     $sql = "call getNombresCursoCm($idCom)";
                     $res = $conn->query($sql);
                   ?>
-                  <form action="Scripts/infoCurso.php" method="POST">
+                  <form action="Scripts/infoCurso.php" id="ver" method="POST">
                     <select class="form-control selectpicker" id="select-curso" name="select-curso" data-live-search="true">
+                      <option data-hidden="true" value="">Seleccione un curso</option>
                       <?php while( $row = $res->fetch_array() ) {
                         if(!empty($row['nombre'])) {?>
                         <option data-tokens="<?php echo $row['nombre']; ?>" value="<?php echo $row['idcurso']; ?>">
@@ -148,7 +150,7 @@ Header
                     </select>
                 </div>
                 <center>
-                    <br><br> <button type="submit" class="btn btn-primary">Visualizar</button>
+                    <br><br> <button type="button" onClick="checkUser()" class="btn btn-primary">Visualizar</button>
                 </center>
               </form>
             </div>
@@ -313,6 +315,15 @@ Footer
       }
       function reset(){
         document.getElementsByName("botonSi")[0].value=0;
+      }
+      function checkUser(){
+        var books = $('#select-curso');
+        if(books.val() === ''){
+          alert('Debe de seleccionar un curso.');
+        }
+        else {
+          document.getElementById('ver').submit();
+        }
       }
     </script>
 

@@ -82,7 +82,7 @@ Header
             <nav id="nav-menu-container"  class="navbar navbar-dark bg-dark">
                 <ul class="nav-menu ">
 
-                    <li class="menu-active"><a href="#portfolio">Menú Principal</a></li>  
+                    <li class="menu-active"><a href="#portfolio">Menú Principal</a></li>
                     <li><a href="cursos.php">Ver cursos</a></li>
 
                         <li><a href="#" onclick="document.getElementById('cs').submit()"> Cerrar sesión</a></li>
@@ -116,7 +116,7 @@ Header
                                 </div>
                                 <label for="" class="col-sm-2 form-control-label" id="nombre-estudiante">Nombre</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="nombre" value="<?php echo $_SESSION["nombreEstudiante"]; ?>"readonly>
+                                    <input type="text" id="nombreEst" name="nombreEst" <?php echo $_SESSION["nombreEstudiante"]; ?>readonly>
                                 </div>
                             </div>
 
@@ -127,8 +127,9 @@ Header
                                     $sql = "call getNombresCursoCm($idCom)";
                                     $res = $conn->query($sql);
                                   ?>
-                                  <form action="Scripts/matricular.php" method="POST">
+                                  <form action="Scripts/matricular.php" id="matri" method="POST">
                                     <select class="form-control selectpicker" id="select-curso" name="select-curso" data-live-search="true">
+                                      <option data-hidden="true" value="">Seleccione un curso</option>
                                       <?php while( $row = $res->fetch_array() ) {
                                         if(!empty($row['nombre'])) {?>
                                         <option data-tokens="<?php echo $row['nombre']; ?>" value="<?php echo $row['idcurso']; ?>">
@@ -141,7 +142,7 @@ Header
                         </div>
                     </div>
                     <center>
-                      <br><br> <button type="submit" class="btn btn-success">Matricular</button>
+                      <br><br> <button type="button" class="btn btn-success" onClick="checkUser()">Matricular</button>
                     </center>
                   </form>
                 </section><!-- #call-to-action -->
@@ -344,8 +345,20 @@ Footer
           function reset(){
             document.getElementsByName("botonSi")[0].value=0;
           }
+          function checkUser(){
+            var books = $('#select-curso');
+            if (document.getElementById('nombreEst').hasAttribute("value")) {
+                if(books.val() === ''){
+                  alert('Debe de seleccionar un curso.');
+                }
+                else {
+                  document.getElementById('matri').submit();
+                }
+            }
+            else {
+              alert('Debe de ingresar la cédula de un estudiante primero.');
+            }
+          }
         </script>
-
-
         </body>
 </html>

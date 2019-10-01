@@ -105,9 +105,11 @@ About Us Section
 
                         <div class="col-md-6">
                             <div class="card mb-2">
+                              <center>
                                 <img class="card-img-top i"
                                      src="img/gabriel.jpg"
                                      alt="Card image cap ">
+                              </center>
                                 <div class="card-body">
                                     <h4 class="card-title">Gabriel Solórzano Chanto </h4>
                                     <p class="card-text">Santa Bárbara, Heredia</p>
@@ -119,9 +121,11 @@ About Us Section
 
                         <div class="col-md-6">
                             <div class="card mb-2">
+                              <center>
                                 <img class="card-img-top i"
                                      src="img/carlos.jpg"
                                      alt="Card image cap">
+                              </center>
                                 <div class="card-body">
                                     <h4 class="card-title">Carlos Gómez Segura</h4>
                                     <p class="card-text">Santo Domingo, Heredia</p>
