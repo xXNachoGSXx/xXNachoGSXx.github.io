@@ -78,15 +78,18 @@ Header
                 <div id="logo" class="pull-left">
                     <a href="#hero"><img src="img/logo.png" alt="" title="" /></img></a>
             </div>
-
+            <form id="cs" action="Scripts/eliminarhistorial.php" method="POST">
             <nav id="nav-menu-container"  class="navbar navbar-dark bg-dark">
                 <ul class="nav-menu ">
-                    <li class="menu-active"><a href="#portfolio">Menú Principal</a></li>
-                    <li><a href="#about">Historial</a></li>
+
+                    <li class="menu-active"><a href="#portfolio">Menú Principal</a></li>  
                     <li><a href="cursos.php">Ver cursos</a></li>
-                    <li><a href="index.php">Cerrar sesión</a></li>
+
+                        <li><a href="#" onclick="document.getElementById('cs').submit()"> Cerrar sesión</a></li>
+
                 </ul>
             </nav><!-- #nav-menu-container -->
+            </form>
             </div>
         </header><!-- #header -->
 
@@ -229,7 +232,7 @@ About Us Section
             <center>
                 <h2 class="title">Historial de matrícula</h2>
                 <p>
-                    Información de los útimos alumno matrículados, se mostrarán los últimos 5 resultados de matrícula
+                    Información de los útimos alumnos matrículados.
                 </p>
 
 
@@ -238,51 +241,37 @@ About Us Section
                     <table class="table table-striped custab" id="tabla-historial">
                         <thead>
                             <tr>
-                                <th>Curso</th>
-                                <th>Nombre</th>
-                                <th>Apellido</th>
+                                <th class="text-center">Curso</th>
+                                <th class="text-center">Nombre</th>
+                                <th class="text-center">Primer Apellido</th>
+                                <th class="text-center">Segundo Apellido</th>
                                 <th class="text-center">Acción</th>
                             </tr>
                         </thead>
-                        <tr>
-                            <td>Tejido</td>
-                            <td>Carlos</td>
-                            <td>Gómez</td>
-                            <td class="text-center"> <a href="#" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#desma"><span class="glyphicon glyphicon-remove"></span> Desmatricular</a></td>
-                        </tr>
-                        <tr>
-                            <td>Introducción a la guitarra</td>
-                            <td>Gabriel</td>
-                            <td>Solózano</td>
-                            <td class="text-center"> <a href="#" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#desma"><span class="glyphicon glyphicon-remove"></span> Desmatricular</a></td>
-                        </tr>
-                        <tr>
-                            <td>Manejo de alimentos</td>
-                            <td>Adriana</td>
-                            <td>Álvarez</td>
-                            <td class="text-center"><a href="#" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#desma"><span class="glyphicon glyphicon-remove"></span> Desmatricular</a></td>
-                        </tr>
+                        <?php echo $_SESSION["historialmatricula"]; ?>
                     </table>
 
                 </div>
 
                 <div class="modal fade" id="desma" >
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">¡Atención!</h4>
-                            </div>
-                            <div class="modal-body">
-                                <center>
-                                    <p>Esta seguro que desea desmatricular al estudiante?</p>
-                                    <button class="btn btn-success btn-md" class="close" data-dismiss="modal" aria-hidden="true">Si</button>
-                                    <button class="btn btn-danger btn-md" class="close" data-dismiss="modal" aria-hidden="true">No</button>
-                                </center>
-                            </div>
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">¡Atención!</h4>
+                        </div>
+                        <div class="modal-body">
+                            <center>
+                                <p>Esta seguro que desea desmatricular al estudiante?</p>
+                                <form action="Scripts/desmatriculahistorial.php" method="POST">
+                                  <button type="submit" value="0" name="botonSi" class="btn btn-success btn-md" class="close" aria-hidden="true">Si</button>
+                                  <button onClick="reset()" class="btn btn-danger btn-md" class="close" data-dismiss="modal" aria-hidden="true">No</button>
+                                </form>
+                            </center>
+                        </div>
 
-                        </div><!-- /.modal-content -->
-                    </div><!-- /.modal-dialog -->
-                </div><!-- /.modal -->
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
 
                 </section><!-- #about -->
 
@@ -348,6 +337,14 @@ Footer
         <!-- Template Main Javascript File -->
         <script src="js/main.js"></script>
         <script src="js/funproyecto.js"></script>
+        <script type="text/javascript">
+          function reply_click(clicked_id){
+            document.getElementsByName("botonSi")[0].value=clicked_id;
+          }
+          function reset(){
+            document.getElementsByName("botonSi")[0].value=0;
+          }
+        </script>
 
 
         </body>

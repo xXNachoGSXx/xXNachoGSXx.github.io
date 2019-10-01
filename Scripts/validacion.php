@@ -1,9 +1,6 @@
 <?php
 include "conexion.php";
 session_start();
-if (!isset($_SESSION['user'])){
-    header("Location: ../index.php");
-}
 unset ($_SESSION['infoComunidad']);
 unset ($_SESSION['infoComunidadAdmin']);
 unset ($_SESSION['infoCurso']);
@@ -12,6 +9,7 @@ unset($_SESSION["idComunidad"]);
 unset($_SESSION["clase"]);
 unset($_SESSION["nuevo"]);
 unset($_SESSION["id"]);
+unset($_SESSION["historialmatricula"]);
     if($_POST){
         $usuario = $_POST['usuario'];
         $clave =  $_POST['clave'];
