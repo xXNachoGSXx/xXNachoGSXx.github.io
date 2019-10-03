@@ -71,7 +71,7 @@
 	cursor: pointer;
 	user-select: none;
 	color: white;
-	
+
 	&::before {
 		content: '';
 		position: absolute;
@@ -81,7 +81,7 @@
 		right: 0;
 		background: linear-gradient(135deg, #6e8efb, #a777e3);
 		border-radius: 4px;
-		transition: box-shadow .5s ease, transform .2s ease; 
+		transition: box-shadow .5s ease, transform .2s ease;
 		will-change: transform;
 		box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
 		transform:
@@ -90,16 +90,16 @@
 			rotateY(var(--ry, 0))
 			translateZ(var(--tz, -12px));
 	}
-	
+
 	&:hover::before {
 		box-shadow: 0 5px 15px rgba(0, 0, 0, .3);
 	}
-	
+
 	&::after {
 		position: relative;
 		display: inline-block;
 		content: attr(data-title);
-		transition: transform .2s ease; 
+		transition: transform .2s ease;
 		font-weight: bold;
 		letter-spacing: .01em;
 		will-change: transform;
@@ -121,7 +121,7 @@
 }
 
 /* Hover state animation applied here */
-.button:hover { 
+.button:hover {
   -webkit-animation: hover 1200ms linear 2 alternate;
   animation: hover 1200ms linear 2 alternate;
 }
@@ -129,7 +129,7 @@
 /* Active state animation applied here */
 .button:active {
   -webkit-animation: active 1200ms ease 1 alternate;
-  animation: active 1200ms ease 1 alternate; 
+  animation: active 1200ms ease 1 alternate;
   background: #5F9BE0;
 }
 .gray { background: #D2D2D2; }
@@ -137,13 +137,13 @@
 
 /* Active state animation keyframes below */
 
-@-webkit-keyframes active { 
+@-webkit-keyframes active {
   0% {transform: scale(1,1);}
   90% {transform: scale(.9,.88);}
   100% {transform: scale(.92,.9);}
 }
 
-keyframes active { 
+keyframes active {
   0% {transform: scale(1,1);}
   90% {transform: scale(.9,.88);}
   100% {transform: scale(.92,.9);}
@@ -216,7 +216,7 @@ keyframes active {
   color: #fff;
   border-radius: 5px;
   padding: 10px;
-  font-size: 80%; 
+  font-size: 80%;
 }
 
 .headera,
@@ -298,7 +298,7 @@ keyframes active {
 
 
 #wgtmsr{
- width:150px;   
+ width:150px;
 }
 
 

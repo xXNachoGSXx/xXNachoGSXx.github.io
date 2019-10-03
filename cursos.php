@@ -91,7 +91,7 @@ Header
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <form action="/examples/actions/confirmation.php" method="post">
+                    <form action="Scripts/crearCurso.php" method="post">
                         <div class="form-group">
                             <input type="text" class="form-control" name="nombre" placeholder="Nombre" required="required">
                         </div>
@@ -157,7 +157,11 @@ Header
 
 
             <div class="section-header">
-                <h3 class="section-title">Información de curso</h3>
+                <h3 class="section-title <?php
+                if(!isset($_SESSION["infoCurso"])){
+                  echo "hide";
+                }
+                 ?>">Información de curso</h3>
             </div>
 
 
@@ -168,7 +172,11 @@ Header
                         </div>
                         <div class="col-sm">
                           <?php $fila =  unserialize($_SESSION["infoCurso"]);?>
-                            <table id="tablePreview" class="table table-bordered">
+                            <table id="tablePreview" class="table table-bordered  <?php
+                            if(!isset($_SESSION["infoCurso"])){
+                              echo "hide";
+                            }
+                             ?>">
                                 <!--Table body-->
                                 <tbody>
                                     <tr>
@@ -208,14 +216,22 @@ Header
 
 
             <div class="section-header">
-                <h3 class="section-title">Estudiantes inscritos</h3>
+                <h3 class="section-title <?php
+                if(!isset($_SESSION["infoCurso"])){
+                  echo "hide";
+                }
+                 ?>">Estudiantes inscritos</h3>
             </div>
 
             <center>
 
                 <div class="container">
 
-                    <table class="table table-striped custab">
+                    <table class="table table-striped custab <?php
+                    if(!isset($_SESSION["infoCurso"])){
+                      echo "hide";
+                    }
+                     ?>">
                         <thead>
                             <tr>
                                 <th>Cedula</th>
