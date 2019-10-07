@@ -97,7 +97,7 @@ About Us Section
                                         $res = $conn->query($sql);
                                       ?>
                                         <select class="form-control selectpicker" id="select-comunidad" name="select-comunidad" data-live-search="true">
-                                          <option data-hidden="true" value="">Seleccione un curso</option>
+                                          <option data-hidden="true" value="">Seleccione una comunidad</option>
                                           <?php while( $row = $res->fetch_array() ) {
                                             if(!empty($row['nombre'])) {?>
                                             <option data-tokens="<?php echo $row['nombre']; ?>" value="<?php echo $row['idcomunidad']; ?>">
@@ -125,7 +125,7 @@ About Us Section
                                 <td><?php echo $fila['nombre']; ?></td>
                             </tr>
                             <tr>
-                                <td>Ubicación:</td>
+                                <td>Dirección:</td>
                                 <td><?php echo $fila['ubicacion']; ?></td>
                             </tr>
                             <tr>
@@ -138,6 +138,9 @@ About Us Section
                             </tr>
                         </tbody>
                     </table>
+                    <center>
+                      <button type="button" class="<?php echo $_SESSION["clase"]; ?>" data-toggle='modal' data-target='#editarComunidad'>Editar</button>
+                    </center>
                 </div>
                 <div class="col-lg-6 content order-lg-2 order-1 text-center">
                     <h2 class="title">Administradores del Centro</h2>
@@ -160,7 +163,25 @@ About Us Section
         </div>
     </section><!-- #about -->
 
+    <div class="modal fade" id="desma" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">¡Atención!</h4>
+                </div>
+                <div class="modal-body">
+                    <center>
+                        <p>Esta seguro que desea elminar a este administrador?</p>
+                        <form action="Scripts/eliminarAdmin.php" method="POST">
+                          <button type="submit" value="0" name="botonSi" class="btn btn-success btn-md" class="close" aria-hidden="true">Si</button>
+                          <button onClick="reset()" class="btn btn-danger btn-md" class="close" data-dismiss="modal" aria-hidden="true">No</button>
+                        </form>
+                    </center>
+                </div>
 
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
     <!--==========================
 Services Section
 ============================-->
@@ -197,6 +218,38 @@ Services Section
 
 
     </section><!-- #services -->
+
+    <div id="editarComunidad" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Ediar Comunidad</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+
+                <div class="modal-body text-center">
+                    <div class="col-md-12 col-sm-12 no-padng">
+                        <form action="Scripts/editarComunidad.php" method="POST" id="userRegisterFrm" class="log-frm" name="userRegisterFrm">
+                            <ul>
+                                <label>Nombre</label>
+                                <input type="text" value="<?php echo $fila['nombre']; ?>" name="nombre" class="form-control" required>
+                                <label>Dirección</label>
+                                <input type="text" value="<?php echo $fila['ubicacion']; ?>" name="ubi" class="form-control" required>
+                                <label>Teléfono</label>
+                                <input type="number" value="<?php echo $fila['telefono']; ?>" name="tel" class="form-control" required>
+                                <label>Encargado</label>
+                                <input type="text" value="<?php echo $fila['encargado']; ?>" name="enc" class="form-control" required>
+                                <br>
+                                <button type="submit" name="userRegBtn" class="btn btn-primary">Realizar cambios</button>
+                            </ul>
+                        </form>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div id="myModal" class="modal fade">
         <div class="modal-dialog">
@@ -261,6 +314,12 @@ Services Section
     <!-- Template Main Javascript File -->
     <script src="js/main.js"></script>
     <script>
+    function reply_click(clicked_id){
+      document.getElementsByName("botonSi")[0].value=clicked_id;
+    }
+    function reset(){
+      document.getElementsByName("botonSi")[0].value=0;
+    }
     $("#botonAñadir").on("click", function (event) {
             if ($(this).hasClass("disabled")) {
                 event.stopPropagation()

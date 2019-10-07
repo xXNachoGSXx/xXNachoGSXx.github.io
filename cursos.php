@@ -298,7 +298,7 @@ Footer
     <footer>
         <center>
             <div class="footer-top">
-                <small>&copy; Copyright 2019, Gabriel Solórzano, Carlo Gómez</small>
+                <small>&copy; Copyright 2019, Gabriel Solórzano, Carlos Gómez</small>
             </div>
         </center>
     </footer>

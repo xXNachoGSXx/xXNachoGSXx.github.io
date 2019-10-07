@@ -190,13 +190,18 @@ Services Section
     <section id="services">
       <div class="container wow fadeIn">
         <div class="section-header">
-          <h3 class="section-title">Información de comunidad</h3>
-          <p class="section-description">Acerca de la información que posee cada comunidad y cursos impartidos</p>
+          <h3 class="section-title" id="label2">Información de comunidad</h3>
+          <p class="section-description" id="label3">Acerca de la información que posee cada comunidad y cursos impartidos</p>
 
         </div>
       </div>
 
       <center>
+          <div class="container">
+              <div class="row">
+                  <div class="col-sm-10">
+                  </div>
+                  <div class="col-sm">
         <table class="table table-borderless" name="tabla-comunidad" id="tabla-comunidad">
           <thead>
           </thead>
@@ -219,10 +224,23 @@ Services Section
             </tr>
           </tbody>
         </table>
+      </div>
+      <div class="col-sm-10">
+      </div>
+  </div>
+</div>
+</center>
+
+<center>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-10">
+            </div>
+            <div class="col-sm">
         <div class="row1">
           <div class="column1">
             <div class="form-group row">
-              <label class="col-sm-2 form-control-label">Seleccione el curso</label>
+              <label class="col-sm-2 form-control-label" id="label1">Seleccione el curso</label>
                 <select name="select-curso" id="select-curso">
                   <option style="display:none;">Seleccione un curso</option>
                 </select>
@@ -265,6 +283,12 @@ Services Section
             </table>
           </div>
         </div>
+      </div>
+      <div class="col-sm-10">
+      </div>
+  </div>
+</div>
+</center>
       </center>
 
 
@@ -311,6 +335,10 @@ Footer
   <script src="js/main.js"></script>
   <script src="js/funproyecto.js"></script>
   <script>
+    document.getElementById("label1").style.visibility = "hidden";
+    document.getElementById("select-curso").style.visibility = "hidden";
+    document.getElementById("label2").style.visibility = "hidden";
+    document.getElementById("label3").style.visibility = "hidden";
     $(document).ready(function() {
       $('#tabla-curso tr').empty();
       $('#tabla-comunidad tr').empty();
@@ -331,14 +359,27 @@ Footer
             for (i = 1; i < length; i++) {
               select.options[i] = null;
             }
-            for (var i = 0; i < len; i++) {
-              var id = response[i]['id'];
-              var name = response[i]['name'];
-              var sel = document.getElementById('select-curso');
+            document.getElementById("label1").style.visibility = "visible";
+            document.getElementById("select-curso").style.visibility = "visible";
+            document.getElementById("label2").style.visibility = "visible";
+            document.getElementById("label3").style.visibility = "visible";
+            if(len == 0){
+              var select = document.getElementById("select-curso");
               var opt = document.createElement('option');
-              opt.appendChild(document.createTextNode(name));
-              opt.value = id;
-              sel.appendChild(opt);
+              opt.appendChild(document.createTextNode("No hay cursos disponibles"));
+              opt.value = -1;
+              select.appendChild(opt);
+            }
+            else{
+              for (var i = 0; i < len; i++) {
+                var id = response[i]['id'];
+                var name = response[i]['name'];
+                var sel = document.getElementById('select-curso');
+                var opt = document.createElement('option');
+                opt.appendChild(document.createTextNode(name));
+                opt.value = id;
+                sel.appendChild(opt);
+              }
             }
           }
         });
@@ -365,34 +406,32 @@ Footer
       });
       $("#select-curso").change(function() {
         var curid = $(this).val();
-        console.log(curid);
-        $.ajax({
-          url: 'Scripts/infoCursoIndex.php',
-          type: 'post',
-          data: {
-            cur: curid
-          },
-          dataType: 'json',
-          success: function(response) {
-            console.log("Success");
-            var len = response.length;
-            console.log(len);
-            var nom = response[0]['nombre'];
-            var des = response[0]['des'];
-            var prof = response[0]['prof'];
-            var hor = response[0]['hor'];
-            var prec = response[0]['prec'];
-            var cupo = response[0]['cupo'];
-            console.log(nom);
-            $('#tabla-curso tr').empty();
-            $('#tabla-curso tr:last').after('<tr><td><b>Nombre:</b></td><td>'+nom+'</td></tr>');
-            $('#tabla-curso tr:last').after('<tr><td><b>Descripción:</b></td><td>'+des+'</td></tr>');
-            $('#tabla-curso tr:last').after('<tr><td><b>Profesor:</b></td><td>'+prof+'</td></tr>');
-            $('#tabla-curso tr:last').after('<tr><td><b>Horario:</b></td><td>'+hor+'</td></tr>');
-            $('#tabla-curso tr:last').after('<tr><td><b>Precio:</b></td><td>'+prec+'</td></tr>');
-            $('#tabla-curso tr:last').after('<tr><td><b>Cupo:</b></td><td>'+cupo+'</td></tr>');
-          }
-        });
+        if(curid >0){
+          $.ajax({
+            url: 'Scripts/infoCursoIndex.php',
+            type: 'post',
+            data: {
+              cur: curid
+            },
+            dataType: 'json',
+            success: function(response) {
+              var len = response.length;
+              var nom = response[0]['nombre'];
+              var des = response[0]['des'];
+              var prof = response[0]['prof'];
+              var hor = response[0]['hor'];
+              var prec = response[0]['prec'];
+              var cupo = response[0]['cupo'];
+              $('#tabla-curso tr').empty();
+              $('#tabla-curso tr:last').after('<tr><td><b>Nombre:</b></td><td>'+nom+'</td></tr>');
+              $('#tabla-curso tr:last').after('<tr><td><b>Descripción:</b></td><td>'+des+'</td></tr>');
+              $('#tabla-curso tr:last').after('<tr><td><b>Profesor:</b></td><td>'+prof+'</td></tr>');
+              $('#tabla-curso tr:last').after('<tr><td><b>Horario:</b></td><td>'+hor+'</td></tr>');
+              $('#tabla-curso tr:last').after('<tr><td><b>Precio:</b></td><td>'+prec+'</td></tr>');
+              $('#tabla-curso tr:last').after('<tr><td><b>Cupo:</b></td><td>'+cupo+'</td></tr>');
+            }
+          });
+        }
       });
     });
   </script>

@@ -84,9 +84,8 @@ Header
 
                     <li class="menu-active"><a href="#portfolio">Menú Principal</a></li>
                     <li><a href="cursos.php">Ver cursos</a></li>
-
-                        <li><a href="#" onclick="document.getElementById('cs').submit()"> Cerrar sesión</a></li>
-
+                    <li><a data-toggle="modal" data-target="#editar"><span style="color:white" class="glyphicon glyphicon-cog"></span></a></li>
+                    <li><a href="#" onclick="document.getElementById('cs').submit()"> Cerrar sesión</a></li>
                 </ul>
             </nav><!-- #nav-menu-container -->
             </form>
@@ -106,7 +105,7 @@ Header
                     <div class="container wow fadeIn">
                         <div class="row1">
                             <div class="column1">
-                                <label for="" class="col-sm-2 form-control-label" id="cedula-estudiante"  >Cédula</label>
+                                <label for="" class="col-sm-2 form-control-label" id="cedula-estudiante" style="color:white" >Cédula</label>
                                 <div class="col-sm-10">
                                   <form action="Scripts/infoBasicaEstudiante.php" method="POST">
                                     <input type="number" name="cedula" id="cedula" min="1" required>
@@ -114,9 +113,9 @@ Header
                                   </form>
                                     <br><br>
                                 </div>
-                                <label for="" class="col-sm-2 form-control-label" id="nombre-estudiante">Nombre</label>
+                                <label for="" class="col-sm-2 form-control-label" id="nombre-estudiante" style="color:white">Nombre</label>
                                 <div class="col-sm-10">
-                                    <input type="text" id="nombreEst" name="nombreEst" <?php echo $_SESSION["nombreEstudiante"]; ?>readonly>
+                                    <input type="text" id="nombreEst" name="nombreEst" style="color:white" <?php echo $_SESSION["nombreEstudiante"]; ?>readonly>
                                 </div>
                             </div>
 
@@ -224,19 +223,117 @@ Hero Section
     </div>
 </div>
 
+<div id="cambiarPass" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Cambiar Contraseña</h4>
+                <button type="button" class="close" data-dismiss="modal" data-toggle="modal" data-target="#editar" aria-hidden="true">×</button>
+            </div>
+
+            <div class="modal-body text-center">
+                <div class="col-md-12 col-sm-12 no-padng">
+                    <form action="Scripts/cambiarClaveUsuario.php" method="post" id="cambiarpassword" class="log-frm" name="userRegisterFrm">
+                        <ul>
+                          <label>Contraseña actual</label>
+                          <input type="password" placeholder="Contraseña actual" name="oldpassword" id="oldpassword" class="form-control" required>
+                            <label>Nueva contraseña</label>
+                            <input type="password" placeholder="Nueva contraseña" name="newpassword" id="newpassword" class="form-control" required>
+                            <label>Confirmar Nueva Contraseña</label>
+                            <input type="password" placeholder="Confirmar nueva contraseña" name="newconfirm_password" id="newconfirm_password" class="form-control" required>
+                            <span id='message2'></span>
+                            <br>
+                            <br>
+                            <button type="button" name="userRegBtn" class="btn btn-primary" onClick="check2()">Cambiar</button>
+                        </ul>
+                    </form>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
-        <!--==========================
-About Us Section
-============================-->
+<div id="editarComunidad" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Editar Comunidad</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+
+            <div class="modal-body text-center">
+                <div class="col-md-12 col-sm-12 no-padng">
+                    <form action="Scripts/editarComunidad.php" method="POST" id="userRegisterFrm" class="log-frm" name="userRegisterFrm">
+                        <ul>
+                            <label>Nombre</label>
+                            <input type="text" value="<?php echo $fila['nombre']; ?>" name="nombre" class="form-control" required>
+                            <label>Dirección</label>
+                            <input type="text" value="<?php echo $fila['ubicacion']; ?>" name="ubi" class="form-control" required>
+                            <label>Teléfono</label>
+                            <input type="number" value="<?php echo $fila['telefono']; ?>" name="tel" class="form-control" required>
+                            <label>Encargado</label>
+                            <input type="text" value="<?php echo $fila['encargado']; ?>" name="enc" class="form-control" required>
+                            <br>
+                            <button type="submit" name="userRegBtn" class="btn btn-primary">Realizar cambios</button>
+                        </ul>
+                    </form>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="editar" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Registrar</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+
+            <div class="modal-body text-center">
+                <div class="col-md-12 col-sm-12 no-padng">
+                    <form action="" method="POST" id="userRegisterFrm" class="log-frm" name="userRegisterFrm">
+                        <ul>
+                            <label>Cédula</label>
+                            <input type="number" placeholder="Identificación" name="cedula" class="form-control" required>
+                            <label>Nombre</label>
+                            <input type="text" placeholder="Nombre" name="fName" class="form-control" required>
+                            <label>Primer Apellido</label>
+                            <input type="text" placeholder="Primer Apellido" name="lName1" class="form-control" required>
+                            <label>Segundo Apellido</label>
+                            <input type="text" placeholder="Segundo Apellido" name="lName2" class="form-control" required>
+                            <label>Teléfono</label>
+                            <input type="number" placeholder="Teléfono" name="telefono" class="form-control" required>
+                            <label>Nombre de Usuario</label>
+                            <input type="text" placeholder="Nombre de Usuario" name="usuario" class="form-control" required>
+                            <br>
+                            <button type="button" name="userRegBtn" data-dismiss="modal" data-toggle="modal" data-target="#cambiarPass" class="btn btn-info">Cambiar Contraseña</button>
+                            <br>
+                            <br>
+                            <br>
+                            <button type="submit" name="userRegBtn" class="btn btn-primary">Realizar Cambios</button>
+                        </ul>
+                    </form>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
         <section id="about" style="overflow: auto;">
             <center>
                 <h2 class="title">Historial de matrícula</h2>
                 <p>
                     Información de los útimos alumnos matrículados.
                 </p>
-
-
                 <div class="container">
 
                     <table class="table table-striped custab" id="tabla-historial">
@@ -270,33 +367,14 @@ About Us Section
                             </center>
                         </div>
 
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
+                    </div>
+                </div>
+            </div>
 
-                </section><!-- #about -->
+                </section>
 
-            <!--==========================
-Facts Section
-============================-->
+        </main>
 
-            <!--==========================
-Services Section
-============================-->
-
-
-            <!--==========================
-Call To Action Section
-============================-->
-            <!--==========================
-Portfolio Section
-============================-->
-
-            </main>
-
-        <!--==========================
-Footer
-============================-->
         <footer>
             <center>
                 <div class="footer-top">
@@ -328,9 +406,23 @@ Footer
           else
             $('#message').html('').css('color', 'green');
           });
+
+          $('#newpassword, #newconfirm_password').on('keyup', function () {
+            if ($('#newpassword').val() != $('#newconfirm_password').val()) {
+              $('#message2').html('Contraseñas no coinciden').css('color', 'red');
+            }
+            else
+              $('#message2').html('').css('color', 'green');
+            });
+
         function check(){
           if ($('#password').val() == $('#confirm_password').val()) {
             document.getElementById('cambiarCont').submit();
+          }
+        }
+        function check2(){
+          if ($('#newpassword').val() == $('#newconfirm_password').val()) {
+            document.getElementById('cambiarpassword').submit();
           }
         }
         </script>

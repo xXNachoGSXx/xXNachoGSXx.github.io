@@ -28,6 +28,7 @@ if (!isset($_SESSION['user'])){
           <td>'.$row['nombre']." ".$row['apellido1']." ".$row['apellido2']."</td>
           <td>".$row['telefono']."</td>
           <td>".$row['usuario']."</td>
+          <td><a id='".$row['idpersona']."' onClick='reply_click(this.id)' data-toggle='modal' data-target='#desma' class='btn btn-sm btn-danger'><span style='color:white'class='glyphicon glyphicon-minus-sign'></span></a></td>
       </tr>";
         }
     }
