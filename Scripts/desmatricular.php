@@ -9,6 +9,12 @@ $curso = $_SESSION["idCur"];
 if($_POST){
   $sql = "call desmatricular($curso,$idEstudiante)";
   $res = $conn->query($sql) or die ('Unable to execute query. '. mysqli_error($conn));
+  $sql = "call getInfoCurso($curso)";
+  $res = $conn->query($sql);
+  $row = mysqli_fetch_assoc($res);
+  $_SESSION["infoCurso"]=serialize($row);
+  $res->close();
+  $conn->next_result();
   $sql = "call matriculados($curso)" or die ('Unable to execute query. '. mysqli_error($conn));;
   $res = $conn->query($sql);
   $str = "";

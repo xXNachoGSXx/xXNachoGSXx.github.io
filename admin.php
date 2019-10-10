@@ -81,7 +81,6 @@ Header
             <form id="cs" action="Scripts/eliminarhistorial.php" method="POST">
             <nav id="nav-menu-container"  class="navbar navbar-dark bg-dark">
                 <ul class="nav-menu ">
-
                     <li class="menu-active"><a href="#portfolio">Menú Principal</a></li>
                     <li><a href="cursos.php">Ver cursos</a></li>
                     <li><a data-toggle="modal" data-target="#editar"><span style="color:white" class="glyphicon glyphicon-cog"></span></a></li>
@@ -164,7 +163,6 @@ Header
                     <div class="modal-body text-center">
                         <div class="col-md-12 col-sm-12 no-padng">
                             <form action="Scripts/crearEstudiante.php" method="post" id="userRegisterFrm" class="log-frm" name="userRegisterFrm">
-                                <ul>
                                     <label>Cédula</label>
                                     <input type="number" placeholder="Cédula" name="cedula" class="form-control" required>
                                     <label>Nombre</label>
@@ -179,7 +177,6 @@ Header
                                     <input type="text" placeholder="Correo" name="correo" class="form-control" required>
                                     <br>
                                     <button name="userRegBtn" class="btn btn-primary">Registrar</button>
-                                </ul>
                             </form>
                         </div>
 
@@ -204,7 +201,7 @@ Hero Section
             <div class="modal-body text-center">
                 <div class="col-md-12 col-sm-12 no-padng">
                     <form action="Scripts/cambiarClave.php" method="post" id="cambiarCont" class="log-frm" name="userRegisterFrm">
-                        <ul>
+
                             <label>Contraseña</label>
                             <input type="password" placeholder="Contraseña" name="password" id="password" class="form-control" required>
                             <label>Confirmar Contraseña</label>
@@ -213,7 +210,7 @@ Hero Section
                             <br>
                             <br>
                             <button type="button" name="userRegBtn" class="btn btn-primary" onClick="check()">Actualizar</button>
-                        </ul>
+
                     </form>
                 </div>
 
@@ -234,9 +231,8 @@ Hero Section
             <div class="modal-body text-center">
                 <div class="col-md-12 col-sm-12 no-padng">
                     <form action="Scripts/cambiarClaveUsuario.php" method="post" id="cambiarpassword" class="log-frm" name="userRegisterFrm">
-                        <ul>
-                          <label>Contraseña actual</label>
-                          <input type="password" placeholder="Contraseña actual" name="oldpassword" id="oldpassword" class="form-control" required>
+                            <label>Contraseña actual</label>
+                            <input type="password" placeholder="Contraseña actual" name="oldpassword" id="oldpassword" class="form-control" required>
                             <label>Nueva contraseña</label>
                             <input type="password" placeholder="Nueva contraseña" name="newpassword" id="newpassword" class="form-control" required>
                             <label>Confirmar Nueva Contraseña</label>
@@ -245,7 +241,6 @@ Hero Section
                             <br>
                             <br>
                             <button type="button" name="userRegBtn" class="btn btn-primary" onClick="check2()">Cambiar</button>
-                        </ul>
                     </form>
                 </div>
 
@@ -267,7 +262,7 @@ Hero Section
             <div class="modal-body text-center">
                 <div class="col-md-12 col-sm-12 no-padng">
                     <form action="Scripts/editarComunidad.php" method="POST" id="userRegisterFrm" class="log-frm" name="userRegisterFrm">
-                        <ul>
+
                             <label>Nombre</label>
                             <input type="text" value="<?php echo $fila['nombre']; ?>" name="nombre" class="form-control" required>
                             <label>Dirección</label>
@@ -278,7 +273,7 @@ Hero Section
                             <input type="text" value="<?php echo $fila['encargado']; ?>" name="enc" class="form-control" required>
                             <br>
                             <button type="submit" name="userRegBtn" class="btn btn-primary">Realizar cambios</button>
-                        </ul>
+
                     </form>
                 </div>
 
@@ -298,30 +293,30 @@ Hero Section
 
             <div class="modal-body text-center">
                 <div class="col-md-12 col-sm-12 no-padng">
-                    <form action="" method="POST" id="userRegisterFrm" class="log-frm" name="userRegisterFrm">
-                        <ul>
+                  <?php $fila =  unserialize($_SESSION["infoAdmin"]);?>
+                    <form action="Scripts/editarAdmin.php" method="POST" id="userRegisterFrm" class="log-frm" name="userRegisterFrm">
+
                             <label>Cédula</label>
-                            <input type="number" placeholder="Identificación" name="cedula" class="form-control" required>
+                            <input type="number" placeholder="Identificación" value="<?php echo $fila['idpersona']; ?>" name="ced" class="form-control" required>
                             <label>Nombre</label>
-                            <input type="text" placeholder="Nombre" name="fName" class="form-control" required>
+                            <input type="text" placeholder="Nombre" name="nom" value="<?php echo $fila['nombre']; ?>" class="form-control" required>
                             <label>Primer Apellido</label>
-                            <input type="text" placeholder="Primer Apellido" name="lName1" class="form-control" required>
+                            <input type="text" placeholder="Primer Apellido" name="lN1" value="<?php echo $fila['apellido1']; ?>"class="form-control" required>
                             <label>Segundo Apellido</label>
-                            <input type="text" placeholder="Segundo Apellido" name="lName2" class="form-control" required>
+                            <input type="text" placeholder="Segundo Apellido" name="lN2" value="<?php echo $fila['apellido2']; ?>"class="form-control" required>
                             <label>Teléfono</label>
-                            <input type="number" placeholder="Teléfono" name="telefono" class="form-control" required>
+                            <input type="text" placeholder="Teléfono" name="tel" value="<?php echo $fila['telefono']; ?>"class="form-control" required>
                             <label>Nombre de Usuario</label>
-                            <input type="text" placeholder="Nombre de Usuario" name="usuario" class="form-control" required>
+                            <input type="text" placeholder="Nombre de Usuario" name="us" value="<?php echo $fila['usuario']; ?>"class="form-control" required>
                             <br>
                             <button type="button" name="userRegBtn" data-dismiss="modal" data-toggle="modal" data-target="#cambiarPass" class="btn btn-info">Cambiar Contraseña</button>
                             <br>
                             <br>
                             <br>
                             <button type="submit" name="userRegBtn" class="btn btn-primary">Realizar Cambios</button>
-                        </ul>
+
                     </form>
                 </div>
-
                 <div class="clearfix"></div>
             </div>
         </div>
@@ -370,8 +365,7 @@ Hero Section
                     </div>
                 </div>
             </div>
-
-                </section>
+      </section>
 
         </main>
 
@@ -417,12 +411,27 @@ Hero Section
 
         function check(){
           if ($('#password').val() == $('#confirm_password').val()) {
-            document.getElementById('cambiarCont').submit();
+            if ($('#password').val() != ""){
+              document.getElementById('cambiarCont').submit();
+            }
+            else {
+              alert("Porfavor ingrese la nueva contraseña.");
+            }
           }
         }
         function check2(){
           if ($('#newpassword').val() == $('#newconfirm_password').val()) {
-            document.getElementById('cambiarpassword').submit();
+            if($('#oldpassword').val() != ""){
+              if ($('#newpassword').val() != ""){
+                document.getElementById('cambiarpassword').submit();
+              }
+              else {
+                alert("Porfavor ingrese la nueva contraseña.");
+              }
+            }
+            else{
+              alert("Porfavor ingrese la contraseña actual.");
+            }
           }
         }
         </script>

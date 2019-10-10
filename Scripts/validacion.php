@@ -10,6 +10,7 @@ unset($_SESSION["clase"]);
 unset($_SESSION["nuevo"]);
 unset($_SESSION["id"]);
 unset($_SESSION["historialmatricula"]);
+unset($_SESSION["infoAdmin"]);
     if($_POST){
         $usuario = $_POST['usuario'];
         $clave =  crypt($_POST['clave'], '$5$YourSaltyStringz$');
@@ -41,8 +42,14 @@ unset($_SESSION["historialmatricula"]);
               $sql = "call getNuevo($procOutput_idUSer)";
               $res = $conn->query($sql);
               $row = mysqli_fetch_assoc($res);
-              $_SESSION["id"]=$procOutput_idUSer;
               $_SESSION["nuevo"]=$row['nuevo'];
+              $_SESSION["id"]=$procOutput_idUSer;
+              $res->close();
+              $conn->next_result();
+              $sql = "call getinfoadmin($procOutput_idUSer)";
+              $res = $conn->query($sql);
+              $row = mysqli_fetch_assoc($res);
+              $_SESSION["infoAdmin"]=serialize($row);
               header("Location: ../admin.php");
             }
           }

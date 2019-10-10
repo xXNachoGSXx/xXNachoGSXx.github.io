@@ -236,7 +236,7 @@ Services Section
                                 <label>Dirección</label>
                                 <input type="text" value="<?php echo $fila['ubicacion']; ?>" name="ubi" class="form-control" required>
                                 <label>Teléfono</label>
-                                <input type="number" value="<?php echo $fila['telefono']; ?>" name="tel" class="form-control" required>
+                                <input type="text" value="<?php echo $fila['telefono']; ?>" name="tel" class="form-control" required>
                                 <label>Encargado</label>
                                 <input type="text" value="<?php echo $fila['encargado']; ?>" name="enc" class="form-control" required>
                                 <br>
@@ -272,7 +272,7 @@ Services Section
                                 <label>Segundo Apellido</label>
                                 <input type="text" placeholder="Segundo Apellido" name="lName2" class="form-control" required>
                                 <label>Teléfono</label>
-                                <input type="number" placeholder="Teléfono" name="telefono" class="form-control" required>
+                                <input type="text" placeholder="Teléfono" name="telefono" class="form-control" required>
                                 <label>Nombre de Usuario</label>
                                 <input type="text" placeholder="Nombre de Usuario" name="usuario" class="form-control" required>
                                 <br>

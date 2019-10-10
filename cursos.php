@@ -132,14 +132,18 @@ Header
                     <h3 class="section-title">Visualizador de cursos</h3>
                     <p class="section-description">Consiste en la visualización de los cursos de una comunidad</p>
                 </div>
-                <label for="" class="col-sm-2 form-control-label"  >Seleccione curso</label>
+                <label class="col-sm-2 form-control-label"  >Seleccione curso</label>
                 <div class="col-sm-10">
                   <?php
                     $sql = "call getNombresCursoCm($idCom)";
                     $res = $conn->query($sql);
                   ?>
                   <form action="Scripts/infoCurso.php" id="ver" method="POST">
-                    <select class="form-control selectpicker" id="select-curso" name="select-curso" data-live-search="true">
+                    <select class="browser-default">
+                      <option>Activos</option>
+                      <option>Inactivos</option>
+                    </select>
+                    <select class="selectpicker" id="select-curso" name="select-curso" data-live-search="true">
                       <option data-hidden="true" value="">Seleccione un curso</option>
                       <?php while( $row = $res->fetch_array() ) {
                         if(!empty($row['nombre'])) {?>
@@ -149,8 +153,11 @@ Header
                         <?php } } ?>
                     </select>
                 </div>
+                <br>
+                <br>
+                <br>
                 <center>
-                    <br><br> <button type="button" onClick="checkUser()" class="btn btn-primary">Visualizar</button>
+                    <button type="button" onClick="checkUser()" class="btn btn-primary">Visualizar</button>
                 </center>
               </form>
             </div>

@@ -2,6 +2,7 @@
 // Include DB conexion file
 include "Scripts/conexion.php";
 unset($_SESSION["user"]);
+
 ?>
 
 
@@ -67,7 +68,7 @@ Header
 ============================-->
   <header id="header">
     <div class="container">
-
+      <!-- <input value="<?php echo crypt("12345", '$5$YourSaltyStringz$'); ?>"> -->
       <div id="logo" class="pull-left">
         <a href="#hero"><img src="img/logo.png" alt="" title="" /></img></a>
         <!-- Uncomment below if you prefer to use a text logo -->
@@ -108,7 +109,6 @@ Inicio de sesión
             </div>
             <div class="form-group">
               <button type="submit" class="btn btn-primary btn-lg btn-block login-btn">Login</button>
-
             </div>
           </form>
         </div>

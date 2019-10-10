@@ -15,7 +15,7 @@ if (!isset($_SESSION['user'])){
     $tipo = 2;
     $call = mysqli_prepare($conn, 'CALL registrarAdmin(?,?,?,?,?,?,?,?,?)');
     $pas = crypt($cedula, '$5$YourSaltyStringz$');
-    mysqli_stmt_bind_param($call,'ssiisssii', $usuario, $pas,$tipo,$cedula,$nombre,$ln1,$ln2,$idCom,$telefono);
+    mysqli_stmt_bind_param($call,'ssiisssis', $usuario, $pas,$tipo,$cedula,$nombre,$ln1,$ln2,$idCom,$telefono);
     mysqli_stmt_execute($call);
     $idComunidad = $_SESSION["idComunidad"];
     $sql = "call getAdminComunidad($idComunidad)";
