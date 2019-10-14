@@ -37,19 +37,13 @@ if (!isset($_SESSION['user'])){
       }
       $_SESSION["historialmatricula"]=$str;
       unset($_SESSION["nombreEstudiante"]);
-      //header("Location: ../admin.php");
-
-
-      echo "<script>
-           alert('Estudiante matriculado satisfactoriamente');
-           window.location.replace('../admin.php');
-           </script>";
+      $_SESSION["infoGeneral"] = "Estudiante matriculado satisfactoriamente.";
+      header("Location: ../admin.php");
     }
     else{
-      echo "<script>
-           alert('Lo sentimos el estudiante ha sido matriculado previamente');
-           window.location.replace('../admin.php');
-           </script>";
+      unset($_SESSION["nombreEstudiante"]);
+      $_SESSION["infoGeneral"] = "Lo sentimos el estudiante ya está matriculado en este curso.";
+      header("Location: ../admin.php");
     }
 
   }

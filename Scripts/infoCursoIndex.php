@@ -9,7 +9,8 @@ if($_POST){
   $users_arr = array();
   $users_arr[] = array("nombre" => $row['nombre'], "des" => $row['descripcion']
                       , "prof" => $row['profesor'], "hor" => $row['horario']
-                      , "prec" => $row['precio'], "cupo" => $row['cuposdisponibles']);
+                      , "prec" => $row['precio'], "cupo" => $row['cuposdisponibles']
+                      ,"dur" => $row['duracion']);
   echo json_encode($users_arr);
 }
  ?>

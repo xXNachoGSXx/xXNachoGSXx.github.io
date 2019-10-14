@@ -4,15 +4,14 @@ session_start();
 if (!isset($_SESSION['user'])){
     header("Location: ../index.php");
 }
+unset($_SESSION["nombreEstudiante"]);
 $ced = $_POST['cedula'];
   if($_POST){
     $sql = "call getNombreEstudiante($ced)";
     $res = $conn->query($sql);
     if (mysqli_num_rows($res)==0) {
-      echo "<SCRIPT type='text/javascript'>
-         alert('El usuario no existe. Favor registrarlo o digite una nueva cédula.');
-         window.location.replace('../admin.php');
-         </SCRIPT>";
+      $_SESSION["infoGeneral"] = "El usuario no existe. Favor registrarlo o digite una nueva cédula.";
+      header("Location: ../admin.php");
     }
     else{
       $row = mysqli_fetch_assoc($res);

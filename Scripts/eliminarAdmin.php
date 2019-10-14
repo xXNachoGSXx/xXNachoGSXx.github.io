@@ -26,9 +26,7 @@ if($_POST){
       }
   }
   $_SESSION["infoComunidadAdmin"]=$str;
-  echo "<script>
-       alert('Administrador eliminado satisfactoriamente.');
-       window.location.replace('../super.php');
-       </script>";
+  $_SESSION["infoGeneral"] = "Administrador eliminado satisfactoriamente.";
+  header("Location: ../super.php");
 }
 ?>

@@ -17,10 +17,7 @@ if($_POST){
   $row = mysqli_fetch_assoc($res);
   $_SESSION["id"]=$procOutput_idUSer;
   $_SESSION["nuevo"]=$row['nuevo'];
-
-  echo "<script>
-       alert('Contraseña actualizada satisfactoriamente.');
-       window.location.replace('../admin.php');
-       </script>";
+  $_SESSION["infoGeneral"] = "Contraseña actualizada satisfactoriamente.";
+  header("Location: ../admin.php");
 }
 ?>

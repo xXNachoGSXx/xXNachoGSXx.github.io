@@ -29,6 +29,12 @@
         }
     }
     $_SESSION["infoMatricula"]=$str;
+    $res->close();
+    $conn->next_result();
+    $sql = "call getActivo($idCurso)";
+    $res = $conn->query($sql);
+    $row = mysqli_fetch_assoc($res);
+    $_SESSION["activo"] = $row['activo'];
     header("Location: ../cursos.php");
   }
 ?>

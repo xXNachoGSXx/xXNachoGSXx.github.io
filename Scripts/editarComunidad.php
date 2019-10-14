@@ -21,10 +21,8 @@ if($_POST){
   $row = mysqli_fetch_assoc($res);
   $_SESSION["infoComunidad"]=serialize($row);
 
-  echo "<script>
-       alert('Modificación realizada satisfactoriamente.');
-       window.location.replace('../super.php');
-       </script>";
 
+  $_SESSION["infoGeneral"] = "Modificación realizada satisfactoriamente.";
+  header("Location: ../super.php");
 }
  ?>

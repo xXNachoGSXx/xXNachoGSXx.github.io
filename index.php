@@ -1,8 +1,6 @@
 <?php
-// Include DB conexion file
 include "Scripts/conexion.php";
 unset($_SESSION["user"]);
-
 ?>
 
 
@@ -263,6 +261,10 @@ Services Section
                   <td></td>
                 </tr>
                 <tr>
+                  <td><b>Duración</b></td>
+                  <td></td>
+                </tr>
+                <tr>
                   <td><b>Horario</b></td>
                   <td></td>
                 </tr>
@@ -354,11 +356,9 @@ Footer
           success: function(response) {
             $('#tabla-curso tr').empty();
             var len = response.length;
-            var select = document.getElementById("select-curso");
-            var length = select.options.length;
-            for (i = 1; i < length; i++) {
-              select.options[i] = null;
-            }
+            $('#select-curso')
+              .empty()
+            ;
             document.getElementById("label1").style.visibility = "visible";
             document.getElementById("select-curso").style.visibility = "visible";
             document.getElementById("label2").style.visibility = "visible";
@@ -371,14 +371,17 @@ Footer
               select.appendChild(opt);
             }
             else{
+              $('#select-curso')
+                .append('<option style="display:none;" selected="selected">Seleccione un Curso</option>')
+              ;
               for (var i = 0; i < len; i++) {
                 var id = response[i]['id'];
                 var name = response[i]['name'];
-                var sel = document.getElementById('select-curso');
-                var opt = document.createElement('option');
-                opt.appendChild(document.createTextNode(name));
-                opt.value = id;
-                sel.appendChild(opt);
+                var x = document.getElementById("select-curso");
+                var option = document.createElement("option");
+                option.text = name;
+                option.value = id;
+                x.add(option);
               }
             }
           }
@@ -422,10 +425,12 @@ Footer
               var hor = response[0]['hor'];
               var prec = response[0]['prec'];
               var cupo = response[0]['cupo'];
+              var dur = response[0]['dur'];
               $('#tabla-curso tr').empty();
               $('#tabla-curso tr:last').after('<tr><td><b>Nombre:</b></td><td>'+nom+'</td></tr>');
               $('#tabla-curso tr:last').after('<tr><td><b>Descripción:</b></td><td>'+des+'</td></tr>');
               $('#tabla-curso tr:last').after('<tr><td><b>Profesor:</b></td><td>'+prof+'</td></tr>');
+              $('#tabla-curso tr:last').after('<tr><td><b>Duración:</b></td><td>'+dur+'</td></tr>');
               $('#tabla-curso tr:last').after('<tr><td><b>Horario:</b></td><td>'+hor+'</td></tr>');
               $('#tabla-curso tr:last').after('<tr><td><b>Precio:</b></td><td>'+prec+'</td></tr>');
               $('#tabla-curso tr:last').after('<tr><td><b>Cupo:</b></td><td>'+cupo+'</td></tr>');

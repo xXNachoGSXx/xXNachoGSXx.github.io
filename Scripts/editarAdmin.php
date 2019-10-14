@@ -21,9 +21,7 @@ if($_POST){
   $res = $conn->query($sql);
   $row = mysqli_fetch_assoc($res);
   $_SESSION["infoAdmin"]=serialize($row);
-  echo "<script>
-       alert('Modificación de datos realizada satisfactoriamente.');
-       window.location.replace('../admin.php');
-       </script>";
+  $_SESSION["infoGeneral"] = "Modificación de datos realizada satisfactoriamente.";
+  header("Location: ../admin.php");
 }
  ?>

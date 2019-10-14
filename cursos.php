@@ -45,25 +45,15 @@ unset($_SESSION["nombreEstudiante"]);
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css" rel="stylesheet" />
-
-
-
-        <!-- =======================================================
-Theme Name: Regna
-Theme URL: https://bootstrapmade.com/regna-bootstrap-onepage-template/
-Author: BootstrapMade.com
-License: https://bootstrapmade.com/license/
-======================================================= -->
+        <script type="text/javascript">
+          <?php if(isset($_SESSION['infoGeneral'])){
+            echo "$(window).on('load',function(){
+                $('#info').modal('show');
+            });";
+          } ?>
+        </script>
     </head>
-
     <body>
-
-        <!--==========================
-Header
-============================-->
-
-
-
         <header id="header">
             <div class="container">
 
@@ -105,7 +95,7 @@ Header
                             <input type="number" class="form-control" name="cupos" placeholder="Cantidad de cupos" required="required">
                         </div>
                         <div class="form-group">
-                            <input type="number" class="form-control" name="precio" placeholder="Precio" required="required">
+                            <input type="text" class="form-control" name="precio" placeholder="Precio" required="required">
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" name="horario" placeholder="Horario" required="required">
@@ -135,16 +125,22 @@ Header
                 <label class="col-sm-2 form-control-label"  >Seleccione curso</label>
                 <div class="col-sm-10">
                   <?php
-                    $sql = "call getNombresCursoCm($idCom)";
+                    $sql = "call getNombresCursoCm($idCom,1)";
                     $res = $conn->query($sql);
                   ?>
                   <form action="Scripts/infoCurso.php" id="ver" method="POST">
-                    <select class="browser-default">
-                      <option>Activos</option>
-                      <option>Inactivos</option>
+                    <div class="container">
+                    <div class="row">
+                      <div class="col-3">
+                    <select class="browser-default custom-select custom-select-lg" id="select-activo" name="select-activo">
+                      <!-- <option style="display:none;">Seleccione el tipo</option> -->
+                      <option value="1">Activos</option>
+                      <option value="0">Inactivos</option>
                     </select>
-                    <select class="selectpicker" id="select-curso" name="select-curso" data-live-search="true">
-                      <option data-hidden="true" value="">Seleccione un curso</option>
+                  </div>
+                  <div class="col-6">
+                    <select class="browser-default custom-select custom-select-lg" id="select-curso" name="select-curso">
+                      <option style="display:none;" value="0">Seleccione un curso</option>
                       <?php while( $row = $res->fetch_array() ) {
                         if(!empty($row['nombre'])) {?>
                         <option data-tokens="<?php echo $row['nombre']; ?>" value="<?php echo $row['idcurso']; ?>">
@@ -152,6 +148,9 @@ Header
                         </option>
                         <?php } } ?>
                     </select>
+                  </div>
+                </div>
+              </div>
                 </div>
                 <br>
                 <br>
@@ -199,6 +198,10 @@ Header
                                         <td><?php echo $fila['profesor']; ?></td>
                                     </tr>
                                     <tr>
+                                        <td><b>Duración</b></td>
+                                        <td><?php echo $fila['duracion']; ?></td>
+                                    </tr>
+                                    <tr>
                                         <td><b>Horario</b></td>
                                         <td><?php echo $fila['horario']; ?></td>
                                     </tr>
@@ -213,6 +216,25 @@ Header
                                 </tbody>
                                 <!--Table body-->
                             </table>
+                            <button id="btnManejo" class="btn btn-warning <?php
+                            if(!isset($_SESSION["infoCurso"])){
+                              echo "hide";
+                            }
+                             ?>" data-toggle="modal" data-target="#manejo">
+                             <?php
+                             if(isset($_SESSION["activo"])){
+                             if($_SESSION["activo"] == 1){
+                               echo "Desactivar";
+                             }else{
+                               echo "Activar";
+                             }
+                           }
+                              ?></button>
+                              <button class="btn btn-primary <?php
+                              if(!isset($_SESSION["infoCurso"])){
+                                echo "hide";
+                              }
+                               ?>" data-toggle="modal" data-target="#editar"><span style="color:white" class="glyphicon glyphicon-cog"></button>
                         </div>
                         <div class="col-sm-10">
                         </div>
@@ -255,6 +277,43 @@ Header
 
             </center>
 
+            <div id="editar" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Edirar curso</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+
+                        <div class="modal-body text-center">
+                            <div class="col-md-12 col-sm-12 no-padng">
+                                <form action="Scripts/editarCurso.php" method="POST" id="userRegisterFrm" class="log-frm" name="userRegisterFrm">
+
+                                        <label>Nombre</label>
+                                        <input type="text" placeholder="Nombre" name="nom" value="<?php echo $fila['nombre']; ?>" class="form-control" required>
+                                        <label>Descripción</label>
+                                        <input type="text" placeholder="Descripción" name="des" value="<?php echo $fila['descripcion']; ?>"class="form-control" required>
+                                        <label>Profesor</label>
+                                        <input type="text" placeholder="Profesor" name="prof" value="<?php echo $fila['profesor']; ?>"class="form-control" required>
+                                        <label>Duración</label>
+                                        <input type="text" placeholder="Duración" name="dur" value="<?php echo $fila['duracion']; ?>"class="form-control" required>
+                                        <label>Horario</label>
+                                        <input type="text" placeholder="Horario" name="hor" value="<?php echo $fila['horario']; ?>"class="form-control" required>
+                                        <label>Precio</label>
+                                        <input type="text" placeholder="Precio" name="prec" value="<?php echo $fila['precio']; ?>"class="form-control" required>
+                                        <label>Cupos</label>
+                                        <input type="number" placeholder="Cupos" name="cupo" value="<?php echo $fila['cuposdisponibles']; ?>"class="form-control" required>
+                                        <br>
+                                        <button type="submit" name="userRegBtn" class="btn btn-primary">Realizar Cambios</button>
+
+                                </form>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="modal fade" id="desma" >
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -263,7 +322,7 @@ Header
                         </div>
                         <div class="modal-body">
                             <center>
-                                <p>Esta seguro que desea desmatricular al estudiante?</p>
+                                <p>¿Esta seguro que desea desmatricular al estudiante?</p>
                                 <form action="Scripts/desmatricular.php" method="POST">
                                   <button type="submit" value="0" name="botonSi" class="btn btn-success btn-md" class="close" aria-hidden="true">Si</button>
                                   <button onClick="reset()" class="btn btn-danger btn-md" class="close" data-dismiss="modal" aria-hidden="true">No</button>
@@ -275,7 +334,50 @@ Header
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
 
+            <div id="info" class="modal" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                          <h4 class="modal-title">¡Atención!</h4>
+                      </div>
+                        <div class="modal-body text-center">
+                            <div class="col-md-12 col-sm-12 no-padng">
+                              <p><?php echo $_SESSION["infoGeneral"];
+                                      unset($_SESSION["infoGeneral"]);?></p>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Aceptar</button>
+                            </div>
 
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="manejo" >
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">¡Atención!</h4>
+                        </div>
+                        <div class="modal-body">
+                            <center>
+                                <p id="textoManejo">¿Esta seguro que desea <?php if(isset($_SESSION["activo"])){
+                                if($_SESSION["activo"] == 1){
+                                  echo "desactivar";
+                                }else{
+                                  echo "activar";
+                                }
+                              } ?> este curso?</p>
+                                <form action="Scripts/manejoCurso.php" method="POST">
+                                  <button type="submit" value="<?php echo $_SESSION["idCur"]; ?>" name="botonSiManejo" class="btn btn-success btn-md" class="close" aria-hidden="true">Si</button>
+                                  <button class="btn btn-danger btn-md" class="close" data-dismiss="modal" aria-hidden="true">No</button>
+                                </form>
+                            </center>
+                        </div>
+
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
         </section><!-- #portfolio -->
 
         <!--==========================
@@ -332,6 +434,48 @@ Footer
     <!-- Template Main Javascript File -->
     <script src="js/main.js"></script>
     <script src="js/funproyecto.js"></script>
+    <script>
+    $(document).ready(function() {
+      $("#select-activo").change(function() {
+        var activ = $(this).val();
+        $.ajax({
+          url: 'Scripts/getCursosOpt.php',
+          type: 'post',
+          data: {
+            act: activ
+          },
+          dataType: 'json',
+          success: function(response) {
+            var len = response.length;
+            $('#select-curso')
+              .empty()
+            ;
+            if(len == 0){
+              var select = document.getElementById("select-curso");
+              var opt = document.createElement('option');
+              opt.appendChild(document.createTextNode("No hay cursos disponibles"));
+              opt.value = -1;
+              select.appendChild(opt);
+            }
+            else{
+              $('#select-curso')
+                .append('<option style="display:none;" selected="selected" value="0">Seleccione un Curso</option>')
+              ;
+              for (var i = 0; i < len; i++) {
+                var id = response[i]['id'];
+                var name = response[i]['name'];
+                var x = document.getElementById("select-curso");
+                var option = document.createElement("option");
+                option.text = name;
+                option.value = id;
+                x.add(option);
+              }
+            }
+          }
+        });
+      });
+    });
+    </script>
     <script type="text/javascript">
       function reply_click(clicked_id){
         document.getElementsByName("botonSi")[0].value=clicked_id;
@@ -340,9 +484,11 @@ Footer
         document.getElementsByName("botonSi")[0].value=0;
       }
       function checkUser(){
-        var books = $('#select-curso');
-        if(books.val() === ''){
+        if(document.getElementById("select-curso").value == 0){
           alert('Debe de seleccionar un curso.');
+        }
+        else if (document.getElementById("select-curso").value < 0) {
+          alert('Lo sentimos no hay cursos que mostrar.');
         }
         else {
           document.getElementById('ver').submit();

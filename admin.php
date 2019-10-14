@@ -5,6 +5,7 @@ $idCom = $_SESSION["idComunidad"];
 unset ($_SESSION['infoCurso']);
 unset($_SESSION["infoMatricula"]);
 unset($_SESSION["idCur"]);
+unset($_SESSION["activo"]);
 if (!isset($_SESSION['user'])){
     header("Location: index.php");
 }
@@ -52,7 +53,13 @@ if($_SESSION['tipo'] != 2){
                 $('#changePass').modal('show');
             });";
           } ?>
-
+        </script>
+        <script type="text/javascript">
+          <?php if(isset($_SESSION['infoGeneral'])){
+            echo "$(window).on('load',function(){
+                $('#info').modal('show');
+            });";
+          } ?>
         </script>
 
 
@@ -122,7 +129,7 @@ Header
                                 <label for="" class="col-sm-2 form-control-label" id="selectorcurso">Seleccione el curso</label>
                                 <div class="col-sm-10">
                                   <?php
-                                    $sql = "call getNombresCursoCm($idCom)";
+                                    $sql = "call getNombresCursoCm($idCom,1)";
                                     $res = $conn->query($sql);
                                   ?>
                                   <form action="Scripts/matricular.php" id="matri" method="POST">
@@ -172,9 +179,9 @@ Header
                                     <label>Segundo Apellido</label>
                                     <input type="text" placeholder="Segundo Apellido" name="lName2" class="form-control" required>
                                     <label>Télefono</label>
-                                    <input type="text" placeholder="Teléfono" name="telefono" class="form-control" required>
+                                    <input type="text" pattern="[7-9]{1}[0-9]{9}" placeholder="Teléfono" name="telefono" class="form-control" required>
                                     <label>Correo</label>
-                                    <input type="text" placeholder="Correo" name="correo" class="form-control" required>
+                                    <input type="email" placeholder="Correo" name="correo" class="form-control" required>
                                     <br>
                                     <button name="userRegBtn" class="btn btn-primary">Registrar</button>
                             </form>
@@ -250,39 +257,6 @@ Hero Section
     </div>
 </div>
 
-
-<div id="editarComunidad" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Editar Comunidad</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            </div>
-
-            <div class="modal-body text-center">
-                <div class="col-md-12 col-sm-12 no-padng">
-                    <form action="Scripts/editarComunidad.php" method="POST" id="userRegisterFrm" class="log-frm" name="userRegisterFrm">
-
-                            <label>Nombre</label>
-                            <input type="text" value="<?php echo $fila['nombre']; ?>" name="nombre" class="form-control" required>
-                            <label>Dirección</label>
-                            <input type="text" value="<?php echo $fila['ubicacion']; ?>" name="ubi" class="form-control" required>
-                            <label>Teléfono</label>
-                            <input type="number" value="<?php echo $fila['telefono']; ?>" name="tel" class="form-control" required>
-                            <label>Encargado</label>
-                            <input type="text" value="<?php echo $fila['encargado']; ?>" name="enc" class="form-control" required>
-                            <br>
-                            <button type="submit" name="userRegBtn" class="btn btn-primary">Realizar cambios</button>
-
-                    </form>
-                </div>
-
-                <div class="clearfix"></div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div id="editar" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -345,7 +319,24 @@ Hero Section
                     </table>
 
                 </div>
+                <div id="info" class="modal" data-backdrop="static" data-keyboard="false">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                              <h4 class="modal-title">¡Atención!</h4>
+                          </div>
+                            <div class="modal-body text-center">
+                                <div class="col-md-12 col-sm-12 no-padng">
+                                  <p><?php echo $_SESSION["infoGeneral"];
+                                          unset($_SESSION["infoGeneral"]);?></p>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Aceptar</button>
+                                </div>
 
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="modal fade" id="desma" >
                 <div class="modal-dialog">
                     <div class="modal-content">

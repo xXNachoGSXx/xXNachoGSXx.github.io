@@ -19,9 +19,7 @@ if($_POST){
   mysqli_stmt_bind_param($call,'sssisiis', $nombre, $descripcion,$profesor,$cupos,$horario,$idComunidad,$precio,$duracion);
   mysqli_stmt_execute($call);
 
-  echo "<script>
-       alert('Curso creado satisfactoriamente.');
-       window.location.replace('../cursos.php');
-       </script>";
+  $_SESSION["infoGeneral"] = "Curso creado satisfactoriamente.";
+  header("Location: ../cursos.php");
 }
  ?>

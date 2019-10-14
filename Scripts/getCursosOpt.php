@@ -1,9 +1,13 @@
 <?php
 include "conexion.php";
 session_start();
+if (!isset($_SESSION['user'])){
+    header("Location: ../index.php");
+}
 if($_POST){
-  $idCom = $_POST['com'];
-  $sql = "call getNombresCursoCm($idCom,1)";
+  $idCom = $_SESSION["idComunidad"];
+  $activo = $_POST['act'];
+  $sql = "call getNombresCursoCm($idCom,$activo)";
   $res = $conn->query($sql);
   $users_arr = array();
   while( $row = $res->fetch_array() ){

@@ -18,16 +18,12 @@ if($_POST){
   $result = mysqli_fetch_assoc($select);
   $procOutput_res = $result['@res'];
   if($procOutput_res == 1){
-    echo "<SCRIPT type='text/javascript'>
-       alert('Clave cambiada satisfactoriamente.');
-       window.location.replace('../admin.php');
-       </SCRIPT>";
+    $_SESSION["infoGeneral"] = "Clave cambiada satisfactoriamente.";
+    header("Location: ../admin.php");
   }
   else{
-    echo "<SCRIPT type='text/javascript'>
-       alert('Lo sentimos, la clave actual fue ingresada de forma incorrecta. Intentelo nuevamente.');
-       window.location.replace('../admin.php');
-       </SCRIPT>";
+    $_SESSION["infoGeneral"] = "Lo sentimos, la clave actual fue ingresada de forma incorrecta. Intentelo nuevamente.";
+    header("Location: ../admin.php");
   }
 }
  ?>

@@ -30,9 +30,7 @@ if($_POST){
         }
     }
   $_SESSION["historialmatricula"]=$str;
-  echo "<script>
-       alert('Estudiante desmatriculado satisfactoriamente');
-       window.location.replace('../admin.php');
-       </script>";
+  $_SESSION["infoGeneral"] = "Estudiante desmatriculado satisfactoriamente.";
+  header("Location: ../admin.php");
 }
 ?>
