@@ -13,7 +13,7 @@ unset($_SESSION["historialmatricula"]);
 unset($_SESSION["infoAdmin"]);
     if($_POST){
         $usuario = $_POST['usuario'];
-        $clave =  crypt($_POST['clave'], '$5$YourSaltyStringz$');
+        $clave =  sha1($_POST['clave']);
         $call = mysqli_prepare($conn, 'CALL validarUser(?, ?, @res, @ptipo,@pid)');
 
       	mysqli_stmt_bind_param($call,'ss', $usuario, $clave);

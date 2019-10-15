@@ -272,7 +272,13 @@ unset($_SESSION["nombreEstudiante"]);
                         </thead>
                         <?php echo $_SESSION["infoMatricula"]; ?>
                     </table>
-
+                    <form action="Scripts/export.php" method="POST">
+                    <button type="submit" class="btn btn-primary <?php
+                    if(!isset($_SESSION["infoCurso"])){
+                      echo "hide";
+                    }
+                     ?>">Descargar</button>
+                   </form>
                 </div>
 
             </center>

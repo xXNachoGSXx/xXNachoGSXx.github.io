@@ -179,7 +179,7 @@ Header
                                     <label>Segundo Apellido</label>
                                     <input type="text" placeholder="Segundo Apellido" name="lName2" class="form-control" required>
                                     <label>Télefono</label>
-                                    <input type="text" pattern="[7-9]{1}[0-9]{9}" placeholder="Teléfono" name="telefono" class="form-control" required>
+                                    <input type="text" placeholder="Teléfono" name="telefono" class="form-control" required>
                                     <label>Correo</label>
                                     <input type="email" placeholder="Correo" name="correo" class="form-control" required>
                                     <br>

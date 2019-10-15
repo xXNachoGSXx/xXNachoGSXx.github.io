@@ -5,7 +5,7 @@ if (!isset($_SESSION['user'])){
     header("Location: ../index.php");
 }
 if($_POST){
-  $pas =  crypt($_POST['password'], '$5$YourSaltyStringz$');
+  $pas =  sha1($_POST['password']);
   $id = $_SESSION['id'];
   $call = mysqli_prepare($conn, 'CALL cambiarClave(?,?)');
 

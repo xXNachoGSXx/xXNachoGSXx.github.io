@@ -66,7 +66,6 @@ Header
 ============================-->
   <header id="header">
     <div class="container">
-      <!-- <input value="<?php echo crypt("12345", '$5$YourSaltyStringz$'); ?>"> -->
       <div id="logo" class="pull-left">
         <a href="#hero"><img src="img/logo.png" alt="" title="" /></img></a>
         <!-- Uncomment below if you prefer to use a text logo -->

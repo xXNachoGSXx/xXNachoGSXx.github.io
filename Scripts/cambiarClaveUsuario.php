@@ -5,8 +5,8 @@ if (!isset($_SESSION['user'])){
     header("Location: ../index.php");
 }
 if($_POST){
-  $oldpas =  crypt($_POST['oldpassword'], '$5$YourSaltyStringz$');
-  $pas =  crypt($_POST['newpassword'], '$5$YourSaltyStringz$');
+  $oldpas =  sha1($_POST['oldpassword']);
+  $pas =  sha1($_POST['newpassword']);
   $id = $_SESSION['id'];
   //echo $oldpas;
   $call = mysqli_prepare($conn, 'CALL cambiarClaveUsuario(?,?, ?, @res)');

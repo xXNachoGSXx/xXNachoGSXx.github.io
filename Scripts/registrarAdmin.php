@@ -32,7 +32,7 @@ if (!isset($_SESSION['user'])){
         $res->close();
         $conn->next_result();
         $call = mysqli_prepare($conn, 'CALL registrarAdmin(?,?,?,?,?,?,?,?,?)');
-        $pas = crypt($cedula, '$5$YourSaltyStringz$');
+        $pas = sha1($cedula);
         mysqli_stmt_bind_param($call,'ssiisssis', $usuario, $pas,$tipo,$cedula,$nombre,$ln1,$ln2,$idCom,$telefono);
         mysqli_stmt_execute($call) or die ('Unable to execute query. '. mysqli_error($conn));
         $idComunidad = $_SESSION["idComunidad"];
