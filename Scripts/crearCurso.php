@@ -13,11 +13,11 @@ if($_POST){
   $horario = $_POST['horario'];
   $duracion = $_POST['duracion'];
   $idComunidad = $_SESSION["idComunidad"];
-  echo $idComunidad;
+  $activo = 1;
 
-  $call = mysqli_prepare($conn, 'CALL crearcurso(?,?,?,?,?,?,?,?)');
-  mysqli_stmt_bind_param($call,'sssisiis', $nombre, $descripcion,$profesor,$cupos,$horario,$idComunidad,$precio,$duracion);
-  mysqli_stmt_execute($call);
+  $call = mysqli_prepare($conn, 'CALL crearcurso(?,?,?,?,?,?,?,?,?)');
+  mysqli_stmt_bind_param($call,'sssisiisi', $nombre, $descripcion,$profesor,$cupos,$horario,$idComunidad,$precio,$duracion,$activo);
+  mysqli_stmt_execute($call) or die ('Unable to execute query. '. mysqli_error($conn));
 
   $_SESSION["infoGeneral"] = "Curso creado satisfactoriamente.";
   header("Location: ../cursos.php");

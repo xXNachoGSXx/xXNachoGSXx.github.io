@@ -6,7 +6,7 @@ if (!isset($_SESSION['user'])){
 }
 unset($_SESSION["nombreEstudiante"]);
   if($_POST){
-    $ced = $_POST['cedula'];
+    $ced = $_POST['cedulaR'];
     $nombre = $_POST['fName'];
     $ln1 =  $_POST['lName1'];
     $ln2 =  $_POST['lName2'];

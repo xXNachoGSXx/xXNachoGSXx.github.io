@@ -5,11 +5,10 @@ if (!isset($_SESSION['user'])){
     header("Location: ../index.php");
 }
   if($_POST){
-    $ced = $_SESSION["cedulaEstudiante"];
+    $ced = $_POST["select-estudiante"];
     $curso = $_POST["select-curso"];
     $id = $_SESSION["id"];
-
-    $sql = "call estamatriculado($ced , $curso)";
+    $sql = "call estamatriculado('$ced' , $curso)";
     $res = $conn->query($sql) or die ('Unable to execute query. '. mysqli_error($conn));
     $row = mysqli_fetch_assoc($res);
     if ($row['cant'] == 0){
