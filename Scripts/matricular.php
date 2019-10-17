@@ -19,8 +19,7 @@ if (!isset($_SESSION['user'])){
       mysqli_stmt_bind_param($call,'ssi', $ced, $curso,$id);
       mysqli_stmt_execute($call);
 
-      $iduser = $_SESSION['id'];
-      $sql = "call getHistorial($iduser)";
+      $sql = "call getHistorial($id)";
       $res = $conn->query($sql) or die ('Unable to execute query. '. mysqli_error($conn));
       $str = "";
       while ($row = $res->fetch_array()) {
