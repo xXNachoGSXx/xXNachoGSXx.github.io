@@ -47,7 +47,7 @@ if($_POST){
         </tr>';
       }
   }
-$_SESSION["historialmatricula"]=$str;
+  $_SESSION["historialmatricula"]=$str;
   $_SESSION["infoGeneral"] = "Estudiante desmatriculado satisfactoriamente.";
   header("Location: ../cursos.php");
 }

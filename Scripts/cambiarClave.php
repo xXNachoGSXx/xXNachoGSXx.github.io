@@ -12,10 +12,9 @@ if($_POST){
   mysqli_stmt_bind_param($call,'si', $pas, $id);
   mysqli_stmt_execute($call);
 
-  $sql = "call getNuevo($procOutput_idUSer)";
+  $sql = "call getNuevo($id)";
   $res = $conn->query($sql);
   $row = mysqli_fetch_assoc($res);
-  $_SESSION["id"]=$procOutput_idUSer;
   $_SESSION["nuevo"]=$row['nuevo'];
   $_SESSION["infoGeneral"] = "Contraseña actualizada satisfactoriamente.";
   header("Location: ../admin.php");

@@ -465,7 +465,7 @@ Footer
             }
             else{
               $('#select-curso')
-                .append('<option style="display:none;" selected="selected" value="0">Seleccione un Curso</option>')
+                .append('<option style="display:none;" selected="selected" value="0">Seleccione un curso</option>')
               ;
               for (var i = 0; i < len; i++) {
                 var id = response[i]['id'];

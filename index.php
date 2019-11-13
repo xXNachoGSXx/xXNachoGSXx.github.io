@@ -44,10 +44,10 @@ unset($_SESSION["user"]);
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css" rel="stylesheet" />
   <script type="text/javascript">
-  $(document).ready(function() {
-    $('#tabla-curso tr').empty();
-    $('#tabla-comunidad tr').empty();
-  });
+    $(document).ready(function() {
+      $('#tabla-curso tr').empty();
+      $('#tabla-comunidad tr').empty();
+    });
   </script>
   <!-- =======================================================
 Theme Name: Regna
@@ -152,18 +152,18 @@ About Us Section
                     <label for="" class="col-sm-2 form-control-label">Comunidad</label>
                     <div class="col-sm-10">
                       <?php
-                        $sql = "call getcomunidades()";
-                        $res = $conn->query($sql);
-                        ?>
+                      $sql = "call getcomunidades()";
+                      $res = $conn->query($sql);
+                      ?>
                       <!-- <form action="Scripts/getCursos.php" method="POST"> -->
                       <select class="form-control selectpicker" name="select-comunidad" id="select-comunidad" data-live-search="true">
                         <!-- data-hidden="true" -->
                         <option data-hidden="true" value="">Seleccione una comunidad</option>
                         <?php while ($row = $res->fetch_array()) {
-                                                            if (!empty($row['nombre'])) {?>
-                        <option data-tokens="<?php echo $row['nombre']; ?>" value="<?php echo $row['idcomunidad']; ?>">
-                          <?php echo $row['nombre']; ?>
-                        </option>
+                          if (!empty($row['nombre'])) { ?>
+                            <option data-tokens="<?php echo $row['nombre']; ?>" value="<?php echo $row['idcomunidad']; ?>">
+                              <?php echo $row['nombre']; ?>
+                            </option>
                         <?php }
                         } ?>
                       </select>
@@ -194,58 +194,59 @@ Services Section
       </div>
 
       <center>
-          <div class="container">
-              <div class="row">
-                  <div class="col-sm-10">
-                  </div>
-                  <div class="col-sm">
-        <table class="table table-borderless" name="tabla-comunidad" id="tabla-comunidad">
-          <thead>
-          </thead>
-          <tbody>
-            <tr>
-              <td><b>Nombre:</b></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td><b>Ubicación:</b></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td><b>Teléfono:</b></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td><b>Encargado:</b></td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="col-sm-10">
-      </div>
-  </div>
-</div>
-</center>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-sm">
+              <table class="table table-borderless" name="tabla-comunidad" id="tabla-comunidad">
+                <thead>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><b>Nombre:</b></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><b>Ubicación:</b></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><b>Teléfono:</b></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><b>Encargado:</b></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-md-2">
+            </div>
+          </div>
+        </div>
+      </center>
 
-<center>
-    <div class="container">
+      <center>
+        <!-- <div class="container">
         <div class="row">
             <div class="col-sm-10">
             </div>
             <div class="col-sm">
         <div class="row1">
           <div class="column1">
-            <div class="form-group row">
-              <label class="col-sm-2 form-control-label" id="label1">Seleccione el curso</label>
-                <select name="select-curso" id="select-curso">
-                  <option style="display:none;">Seleccione un curso</option>
-                </select>
-            </div>
+            <div class="form-group row"> -->
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-3">
+            <label class="form-control-label" id="label1">Seleccione el curso:</label>
+            <select name="select-curso" id="select-curso">
+              <option style="display:none;">Seleccione un curso</option>
+            </select>
           </div>
-          <div class="column1">
+          <div class="col-md-5">
             <table id="tabla-curso" name="tabla-curso" class="table table-bordered">
-              <!--Table body-->
               <tbody>
                 <tr>
                   <td><b>Nombre</b></td>
@@ -280,17 +281,23 @@ Services Section
                   <td></td>
                 </tr>
               </tbody>
-              <!--Table body-->
             </table>
           </div>
         </div>
+
+        <!-- </div>
+          </div> -->
+        <!-- <div class="column1"> -->
+
+        <!-- </div> -->
+        <!-- </div>
       </div>
       <div class="col-sm-10">
-      </div>
-  </div>
-</div>
-</center>
+      </div> -->
+        <!-- </div>
+        </div> -->
       </center>
+      <!-- </center> -->
 
 
     </section><!-- #services -->
@@ -356,23 +363,20 @@ Footer
             $('#tabla-curso tr').empty();
             var len = response.length;
             $('#select-curso')
-              .empty()
-            ;
+              .empty();
             document.getElementById("label1").style.visibility = "visible";
             document.getElementById("select-curso").style.visibility = "visible";
             document.getElementById("label2").style.visibility = "visible";
             document.getElementById("label3").style.visibility = "visible";
-            if(len == 0){
+            if (len == 0) {
               var select = document.getElementById("select-curso");
               var opt = document.createElement('option');
               opt.appendChild(document.createTextNode("No hay cursos disponibles"));
               opt.value = -1;
               select.appendChild(opt);
-            }
-            else{
+            } else {
               $('#select-curso')
-                .append('<option style="display:none;" selected="selected">Seleccione un Curso</option>')
-              ;
+                .append('<option style="display:none;" selected="selected">Seleccione un Curso</option>');
               for (var i = 0; i < len; i++) {
                 var id = response[i]['id'];
                 var name = response[i]['name'];
@@ -399,16 +403,16 @@ Footer
             var tel = response[0]['tel'];
             var enc = response[0]['enc'];
             $('#tabla-comunidad tr').empty();
-            $('#tabla-comunidad tr:last').after('<tr><td><b>Nombre:</b></td><td>'+nom+'</td></tr>');
-            $('#tabla-comunidad tr:last').after('<tr><td><b>Ubicación:</b></td><td>'+ubi+'</td></tr>');
-            $('#tabla-comunidad tr:last').after('<tr><td><b>Teléfono:</b></td><td>'+tel+'</td></tr>');
-            $('#tabla-comunidad tr:last').after('<tr><td><b>Encargado:</b></td><td>'+enc+'</td></tr>');
+            $('#tabla-comunidad tr:last').after('<tr><td><b>Nombre:</b></td><td>' + nom + '</td></tr>');
+            $('#tabla-comunidad tr:last').after('<tr><td><b>Ubicación:</b></td><td>' + ubi + '</td></tr>');
+            $('#tabla-comunidad tr:last').after('<tr><td><b>Teléfono:</b></td><td>' + tel + '</td></tr>');
+            $('#tabla-comunidad tr:last').after('<tr><td><b>Encargado:</b></td><td>' + enc + '</td></tr>');
           }
         });
       });
       $("#select-curso").change(function() {
         var curid = $(this).val();
-        if(curid >0){
+        if (curid > 0) {
           $.ajax({
             url: 'Scripts/infoCursoIndex.php',
             type: 'post',
@@ -426,13 +430,13 @@ Footer
               var cupo = response[0]['cupo'];
               var dur = response[0]['dur'];
               $('#tabla-curso tr').empty();
-              $('#tabla-curso tr:last').after('<tr><td><b>Nombre:</b></td><td>'+nom+'</td></tr>');
-              $('#tabla-curso tr:last').after('<tr><td><b>Descripción:</b></td><td>'+des+'</td></tr>');
-              $('#tabla-curso tr:last').after('<tr><td><b>Profesor:</b></td><td>'+prof+'</td></tr>');
-              $('#tabla-curso tr:last').after('<tr><td><b>Duración:</b></td><td>'+dur+'</td></tr>');
-              $('#tabla-curso tr:last').after('<tr><td><b>Horario:</b></td><td>'+hor+'</td></tr>');
-              $('#tabla-curso tr:last').after('<tr><td><b>Precio:</b></td><td>'+prec+'</td></tr>');
-              $('#tabla-curso tr:last').after('<tr><td><b>Cupo:</b></td><td>'+cupo+'</td></tr>');
+              $('#tabla-curso tr:last').after('<tr><td><b>Nombre:</b></td><td>' + nom + '</td></tr>');
+              $('#tabla-curso tr:last').after('<tr><td><b>Descripción:</b></td><td>' + des + '</td></tr>');
+              $('#tabla-curso tr:last').after('<tr><td><b>Profesor:</b></td><td>' + prof + '</td></tr>');
+              $('#tabla-curso tr:last').after('<tr><td><b>Duración:</b></td><td>' + dur + '</td></tr>');
+              $('#tabla-curso tr:last').after('<tr><td><b>Horario:</b></td><td>' + hor + '</td></tr>');
+              $('#tabla-curso tr:last').after('<tr><td><b>Precio:</b></td><td>' + prec + '</td></tr>');
+              $('#tabla-curso tr:last').after('<tr><td><b>Cupo:</b></td><td>' + cupo + '</td></tr>');
             }
           });
         }
