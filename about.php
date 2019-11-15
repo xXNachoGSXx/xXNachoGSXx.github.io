@@ -136,19 +136,10 @@ About Us Section
 
                 </div>
                 <!--/.Carousel Wrapper-->
-
-                <div class="footer-top">
-                    <div class="container">
-                        <div class="row justify-content-between">
-                            <div class="col-xl-4 col-sm-8 col-lg-4">
-                                <div class="single-footer-widget footer_3">
-                                    <img src="img/logotec.png" alt="Avatar" class="image">
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+                <br>
+                <center>
+                <img src="img/logotec.png" alt="Avatar" class="image">
+                </center>
                 </section><!-- #about -->
 
             <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>

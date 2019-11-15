@@ -68,8 +68,6 @@ Header
     <div class="container">
       <div id="logo" class="pull-left">
         <a href="#hero"><img src="img/logo.png" alt="" title="" /></img></a>
-        <!-- Uncomment below if you prefer to use a text logo -->
-        <!--<h1><a href="#hero">Regna</a></h1>-->
       </div>
 
       <nav id="nav-menu-container">
@@ -229,14 +227,6 @@ Services Section
       </center>
 
       <center>
-        <!-- <div class="container">
-        <div class="row">
-            <div class="col-sm-10">
-            </div>
-            <div class="col-sm">
-        <div class="row1">
-          <div class="column1">
-            <div class="form-group row"> -->
         <div class="row">
           <div class="col-md-2"></div>
           <div class="col-md-3">
@@ -284,36 +274,12 @@ Services Section
             </table>
           </div>
         </div>
-
-        <!-- </div>
-          </div> -->
-        <!-- <div class="column1"> -->
-
-        <!-- </div> -->
-        <!-- </div>
-      </div>
-      <div class="col-sm-10">
-      </div> -->
-        <!-- </div>
-        </div> -->
       </center>
-      <!-- </center> -->
 
 
-    </section><!-- #services -->
-
-    <!--==========================
-Call To Action Section
-============================-->
-    <!--==========================
-Portfolio Section
-============================-->
+    </section>
 
   </main>
-
-  <!--==========================
-Footer
-============================-->
   <footer>
     <center>
       <div class="footer-top">
